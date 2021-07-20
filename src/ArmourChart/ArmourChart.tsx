@@ -45,13 +45,13 @@ class ArmourChart extends Component<{
         return (
             <Container>
                 <FlexibleWidthXYPlot height={300}>
+                    <VerticalGridLines />
+                    <HorizontalGridLines />
                     {
                         this.props.lineData.map(lineInfo => (
                             <LineSeries data={this.makeDataSet(lineInfo.dataSet.a, lineInfo.dataSet.t, lineInfo.dataSet.p)} color={lineInfo.color} key={lineInfo.name} />
                         ))
                     }
-                    <VerticalGridLines />
-                    <HorizontalGridLines />
                     <XAxis title="Raw Damage" />
                     <YAxis title="Damage Taken" />
                 </FlexibleWidthXYPlot>

@@ -36,7 +36,7 @@ class ArmourApp extends Component<{}, {
         dataSet: { a: 20, t: 8, p: 6 },
         index: 0
       }, {
-        color: 'gray',
+        color: 'grey',
         name: 'Prot 4 Iron',
         dataSet: { a: 15, t: 0, p: 4 },
         index: 1
@@ -47,7 +47,9 @@ class ArmourApp extends Component<{}, {
     this.onValueSubmit = this.onValueSubmit.bind(this);
     this.createLineData = this.createLineData.bind(this);
     this.dropdownChange = this.dropdownChange.bind(this);
-
+    this.spliceLineData = this.spliceLineData.bind(this);
+    this.sortLineData = this.sortLineData.bind(this);
+    this.nameChange = this.nameChange.bind(this);
   }
 
   onValueSubmit(key: string, value: string) {
@@ -60,9 +62,42 @@ class ArmourApp extends Component<{}, {
     this.onValueSubmit('color', d.value);
   }
 
-  createLineData(lineData: any)  {
-    const newData = update(this.state, { lineData: { $merge: lineData } })
+  nameChange(e: any, d: any) {
+    this.onValueSubmit('lineName', d.value);
+  }
 
+  sortLineData(lineData: any) {
+    let lineArray: {color: string, name: string, dataSet: { a: number, t: number, p: number }, index: number}[] = [];
+
+    for ( let i = 0; i < lineData.length; i++) {
+        if (i >= lineData[i].index) {
+            lineArray.push(lineData[i]);
+        } else if (i < lineData[i].index) {
+          lineArray.push(lineData[i]);
+          lineArray[i].index = i;
+        }
+    }
+    return lineArray;
+  }
+
+  createLineData(lineSet: {color: string, name: string, dataSet: { a: number, t: number, p: number }, index: number}) {
+    let lineArray = this.sortLineData(this.state.lineData);
+    lineArray.push(lineSet);
+    let lineData = this.sortLineData(lineArray);
+
+    const newData = update(this.state, { lineData: { $set: lineData } });
+
+    this.setState(newData);
+  }
+
+  spliceLineData(index: number) {
+    let lineArray = this.sortLineData(this.state.lineData);
+    console.log(lineArray);
+    lineArray.splice(index, 1);
+    console.log(lineArray);
+    let lineData = this.sortLineData(lineArray);
+
+    const newData = update(this.state, { lineData: { $set: lineData } })
     this.setState(newData);
   }
 
@@ -93,12 +128,7 @@ class ArmourApp extends Component<{}, {
         label: { color: colors[i], empty: true, circular: true }
       })
     }
-    console.log(colorDropSet);
     return colorDropSet;
-  }
-
-  spliceLineData(index: number) {
-      
   }
 
   render() {
@@ -116,11 +146,17 @@ class ArmourApp extends Component<{}, {
               </Form>
             </Grid.Column>
             <Grid.Column width='3'>
-              <Dropdown fluid placeholder='Pick a color' value={this.state.color} onChange={this.dropdownChange} options={this.createColorDropSet()} style={{ marginTop:'10px' }} />
-              <Input basic fluid inverted style={{marginTop:'15px'}} placeholder='Enter name' />
+              <Dropdown fluid placeholder='Pick a color' value={this.state.color} onChange={this.dropdownChange} options={this.createColorDropSet()} style={{ marginTop: '10px' }} />
+              <Input basic fluid inverted style={{ marginTop: '15px' }} value={this.state.lineName} onChange={this.nameChange} placeholder='Enter name' />
             </Grid.Column>
             <Grid.Column width='7' inverted>
-              <AddArmourDisplay createLineData={this.createLineData} lineData={this.state.lineData} />
+              <AddArmourDisplay createLineData={this.createLineData} lineData={this.state.lineData} spliceLineData={this.spliceLineData}
+                customLineData={{
+                  color: this.state.color,
+                  name: this.state.lineName,
+                  dataSet: { a: this.state.armourValue, t: this.state.toughValue, p: this.state.protValue },
+                  index: this.state.lineData.length}}
+              />
             </Grid.Column>
           </Grid>
           <Divider style={{ marginLeft: '14px' }} inverted />

@@ -11,13 +11,21 @@ class AddArmourDisplay extends Component<{
         dataSet: { a: number, t: number, p: number },
         index: number
     }[],
-    createLineData: any
-}, { activeVanilla: string, activeDataSet: string, optionSets: any[] }> {
+    createLineData: any,
+    spliceLineData: any,
+    customLineData: {
+        color: string,
+        name: string,
+        dataSet: { a: number, t: number, p: number },
+        index: number
+    }
+}, { activeVanilla: string, activeDataSet: string, activeAddChoice: string, optionSets: any[] }> {
     constructor(props: any) {
         super(props);
         this.state = {
             activeVanilla: 'Leather',
             activeDataSet: '',
+            activeAddChoice: 'preset',
             optionSets: [{
                 key: 'preset',
                 text: 'Preset',
@@ -33,8 +41,8 @@ class AddArmourDisplay extends Component<{
         this.selectDataSet = this.selectDataSet.bind(this);
         this.beamMeUp = this.beamMeUp.bind(this);
         this.optionSet = this.optionSet.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-
+        this.handleChangeSet = this.handleChangeSet.bind(this);
+        this.handleChangeAdd = this.handleChangeAdd.bind(this);
     }
 
     getVanillaValues(set: string, index: number) {
@@ -112,40 +120,31 @@ class AddArmourDisplay extends Component<{
         }
     }
 
-
     optionSet(): { key: string, text: string, value: string | number, label: any }[] {
-
-        let initialOptions: any[] = [{
-            key: 'preset',
-            text: 'Preset',
-            value: 'preset',
-        }, {
-            key: 'custom',
-            text: 'Custom',
-            value: 'custom'
-        }]
-
         let lineMap: any[] = this.props.lineData.map(lineInfo => (
             {
-                key: lineInfo.index.toString(),
+                key: lineInfo.index,
                 text: lineInfo.name,
                 value: lineInfo.index,
                 label: { color: lineInfo.color, empty: true, circular: true }
             }
-        ))
+        ));
 
-        for (let i = 0; i < lineMap.length; i++) {
-            initialOptions.push(lineMap[i])
-        }
-
-        return initialOptions
+        return lineMap;
     }
 
-    handleChange(e: any, data: any) {
+    handleChangeSet(e: any, data: any) {
         let activeSet: string = data.value === undefined ? '' : data.value
 
         this.setState(update(this.state, { activeDataSet: { $set: activeSet } }))
     }
+
+    handleChangeAdd(e: any, data: any) {
+        let activeAddChoice: string = data.value === undefined ? '' : data.value
+
+        this.setState(update(this.state, { activeAddChoice: { $set: activeAddChoice } }))
+    }
+
 
 
     render() {
@@ -162,10 +161,36 @@ class AddArmourDisplay extends Component<{
                 </Button.Group>
 
                 <Divider />
-                
-                <Dropdown onOpen={() => this.setState(update(this.state, { optionSets: { $set: this.optionSet() } }))} value={this.state.activeDataSet} onChange={this.handleChange} selection placeholder="Pick a set" style={{ width: '232px', marginRight: '14px' }} options={this.state.optionSets} labeled />
-                <Button basic inverted style={{ height: '38px', marginTop: '0px' }} color='red' icon='trash' onClick={() => console.log(this.state)} />
-        
+
+                <Button.Group style={{width:'45%'}} >
+                    <Dropdown
+                        onOpen={() => this.setState(update(this.state, { optionSets: { $set: this.optionSet() } }))}
+                        value={this.state.activeDataSet}
+                        onChange={this.handleChangeSet}
+                        options={this.state.optionSets}
+
+                         style={{width: '100px'}}
+                        button text=''
+                    ></Dropdown>
+                    <Button inverted style={{ height: '38px', width:'38px', marginTop: '0px' }} color='red' icon='trash' onClick={(e, d) => this.props.spliceLineData(this.state.activeDataSet)} />
+                </Button.Group>
+                <Button.Group color='green' style={{ paddingLeft:'10%', width:'45%'}} >
+                    <Dropdown
+                        value={this.state.activeAddChoice}
+                        onChange={this.handleChangeAdd}
+                        options={[{
+                            key: 'preset',
+                            text: 'Preset',
+                            value: 'preset',
+                        }, {
+                            key: 'custom',
+                            text: 'Custom',
+                            value: 'custom'
+                        }]}
+                        labeled floating style={{width: '100px'}}
+                    ></Dropdown>
+                    <Button inverted style={{ height: '38px', width:'38px', marginTop: '0px' }} color='green' icon='add' onClick={this.state.activeAddChoice === 'custom' ? () => this.props.createLineData(this.props.customLineData) : () => this.props.createLineData(this.getVanillaValues(this.state.activeVanilla, this.props.lineData.length)) } />
+                </Button.Group>
             </Fragment>
         );
     }
