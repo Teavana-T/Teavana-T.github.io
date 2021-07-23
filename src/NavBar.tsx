@@ -3,7 +3,7 @@ import { Menu, Image, Dropdown, Input } from 'semantic-ui-react';
 
 import { LogoCircle, ArmourIcon } from './Images';
 
-class NavBar extends Component<{page: string}, {isActive: string}> {
+class NavBar extends Component<{ page: string }, { isActive: string }> {
     constructor(props: any) {
         super(props);
 
@@ -16,7 +16,7 @@ class NavBar extends Component<{page: string}, {isActive: string}> {
         const { isActive } = this.state;
 
         return (
-            <Menu attached='bottom' inverted>
+            <Menu attached inverted>
                 <Menu.Item style={{ padding: 5 }} >
                     <Image src={LogoCircle} size='mini' spaced='right' />
                 </Menu.Item>
@@ -24,23 +24,16 @@ class NavBar extends Component<{page: string}, {isActive: string}> {
                     Teavana Solutions
                 </Menu.Item>
                 <Menu.Item fitted >
-                    {/* <Reveal animated='move right'>
-                        <Reveal.Content visible>
-                            <Icon name='search' />
-                        </Reveal.Content>
-                        <Reveal.Content hidden> */}
-                            <Input list='projects' placeholder='Search...' icon='search' />
-                            <datalist id='projects'>
-                                <option value='Armour Calculator'>Armour Calculator</option>
-                                <option value='Home'>Home</option>
-                            </datalist>
-                        {/* </Reveal.Content>
-                    </Reveal> */}
+                    <Input list='projects' placeholder='Search...' icon='search' />
+                    <datalist id='projects'>
+                        <option value='Armour Calculator'>Armour Calculator</option>
+                        <option value='Home'>Home</option>
+                    </datalist>
                 </Menu.Item>
                 <Menu.Menu position='right'>
                     <Dropdown item text="Tools">
                         <Dropdown.Menu>
-                            <Dropdown.Item content="Armour Calculator" >
+                            <Dropdown.Item content="Armour Calculator" href='/minecraft-damage/' active={isActive === 'aApp'} >
                                 <Image src={ArmourIcon} />
                                 Armour Calculator
                             </Dropdown.Item>
@@ -49,6 +42,7 @@ class NavBar extends Component<{page: string}, {isActive: string}> {
                     <Menu.Item
                         active={isActive === 'home'}
                         content="Home"
+                        href='/'
                     />
                 </Menu.Menu>
             </Menu>

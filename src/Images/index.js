@@ -9,6 +9,7 @@ import Diamond from './diamond.png';
 import Netherite from './netherite_ingot.png';
 
 import LogoCircle from './logoCircle.png';
+import Logo from './logo.png';
 
 export {
     ArmourIcon,
@@ -19,5 +20,6 @@ export {
     Gold,
     Diamond,
     Netherite,
-    LogoCircle
+    LogoCircle,
+    Logo
 };
