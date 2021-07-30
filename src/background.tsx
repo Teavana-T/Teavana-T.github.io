@@ -1,13 +1,10 @@
 import { Component } from "react";
-import { Grid, GridColumn } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import './background.css';
 
 
 
 class Background extends Component<{height: number, width: number}, {}> {
-    constructor(props: any) {
-        super(props);
-    }
 
     static defaultProps = {
         height: 8,

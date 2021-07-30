@@ -1,37 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css';
 import ArmourApp from './ArmourChart/ArmourApp';
 import Background from './background';
 import Home from './Homepage/home';
 import NavBar from './NavBar';
+import NepetaPage from './NepetaDisplay/nepetaCore';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+        <NavBar page='/' />
         <Switch>
-          <Route path="/minecraft-damage/">
-            <NavBar page='aApp' />
+          <Route path="/minecraft-armour">
             <Background />
+            <br />
             <ArmourApp />
           </Route>
-          <Route path="/topics">
-            <div>goodbye</div>
-          </Route>
-          <Route path="/">
-            <NavBar page='home' />
+          <Route exact path="/">
             <Background height={8} />
+            <br />
             <Home />
           </Route>
+          <Route exact path="/nepeta/">
+            <Background height={8} />
+            <br />
+            <NepetaPage />
+          </Route>
         </Switch>
-    </Router>
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

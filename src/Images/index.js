@@ -11,6 +11,8 @@ import Netherite from './netherite_ingot.png';
 import LogoCircle from './logoCircle.png';
 import Logo from './logo.png';
 
+import yoimiya from './yoimiya.png';
+
 export {
     ArmourIcon,
     ToughnessIcon,
@@ -21,5 +23,6 @@ export {
     Diamond,
     Netherite,
     LogoCircle,
-    Logo
+    Logo,
+    yoimiya
 };

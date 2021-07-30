@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, Image, Dropdown, Input } from 'semantic-ui-react';
 
 import { LogoCircle, ArmourIcon } from './Images';
@@ -14,6 +15,7 @@ class NavBar extends Component<{ page: string }, { isActive: string }> {
 
     render() {
         const { isActive } = this.state;
+        console.log(this.props.page);
 
         return (
             <Menu attached inverted>
@@ -24,25 +26,30 @@ class NavBar extends Component<{ page: string }, { isActive: string }> {
                     Teavana Solutions
                 </Menu.Item>
                 <Menu.Item fitted >
-                    <Input list='projects' placeholder='Search...' icon='search' />
+                    <Input
+                        list='projects'
+                        placeholder='Search...'
+                        icon='search'
+                    />
                     <datalist id='projects'>
                         <option value='Armour Calculator'>Armour Calculator</option>
                         <option value='Home'>Home</option>
                     </datalist>
                 </Menu.Item>
                 <Menu.Menu position='right'>
-                    <Dropdown item text="Tools">
-                        <Dropdown.Menu>
-                            <Dropdown.Item content="Armour Calculator" href='/minecraft-damage/' active={isActive === 'aApp'} >
-                                <Image src={ArmourIcon} />
-                                Armour Calculator
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
                     <Menu.Item
-                        active={isActive === 'home'}
-                        content="Home"
-                        href='/'
+                        as={Link}
+                        to='/minecraft-armour'
+                        content="Armour Calculator"
+
+                    >
+                        <Image src={ArmourIcon}  />
+                        Armour Calculator
+                    </Menu.Item>
+                    <Menu.Item
+                        as={Link}
+                        content='Home'
+                        to='/'
                     />
                 </Menu.Menu>
             </Menu>
