@@ -2,10 +2,10 @@ import InputBox from './ValueInput';
 import ArmourChart from './ArmourChart';
 import AddArmourDisplay from './AddArmour';
 import update from 'immutability-helper';
-import { Segment, Form, Container, Grid, Divider, Button, Dropdown, Input } from 'semantic-ui-react';
+import { Segment, Form, Container, Grid, Divider, Button, Dropdown, Input, Image, Icon } from 'semantic-ui-react';
 import React, { Component } from 'react';
 
-import { ArmourIcon, ToughnessIcon, ProtIcon } from '../Images';
+import { ArmourIcon, ToughnessIcon, ProtIcon, badImage } from '../../Images';
 import './ArmourApp.css';
 
 
@@ -177,6 +177,11 @@ class ArmourApp extends Component<{}, {
       </Container>
     );
   }
+
+  static preview = <span>
+    <Image src={badImage} floated='left' size='mini' />
+    An app to calculate damage taken from raw damage values and equipped armour pieces
+    </span>
 }
 
 

@@ -1,40 +1,62 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// Hash routing due to GHPages requiring multiple repos to do page by page navigation and right now I want a consolidated project
 import {
   HashRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css';
-import ArmourApp from './ArmourChart/ArmourApp';
-import Background from './background';
+
+// 'Webpage' Components
 import Home from './Homepage/home';
+import ArmourApp from './Projects/ArmourChart/ArmourCore';
+import SocialApp from './Projects/SocialApp/SocialCore';
+import NepetaPage from './Projects/NepetaDisplay/nepetaCore';
+
 import NavBar from './NavBar';
-import NepetaPage from './NepetaDisplay/nepetaCore';
+import Background from './background';
+
+
+
 // import reportWebVitals from './reportWebVitals';
+
+let projects = [
+  { key: 'armour-app', name: 'Armour App', preview: ArmourApp.preview },
+  { key: 'socials', name: 'Social App', preview: SocialApp.preview }
+]
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-        <NavBar page='/' />
-        <Switch>
-          <Route path="/minecraft-armour">
-            <Background />
-            <br />
-            <ArmourApp />
-          </Route>
-          <Route exact path="/">
-            <Background height={8} />
-            <br />
-            <Home />
-          </Route>
-          <Route exact path="/nepeta/">
-            <Background height={8} />
-            <br />
-            <NepetaPage />
-          </Route>
-        </Switch>
-      </Router>
+      <NavBar page='/' />
+      <Switch>
+
+        {/* Home page */}
+        <Route exact path="/">
+          <Background height={8} />
+          {/* Simple padding method due to NavBar being sticky */}
+          <br /> <br /> <br />
+          <Home projects={projects} />
+        </Route>
+
+        {/* Armour chart app page */}
+        <Route path="/armour-app">
+          <Background />
+          {/* Simple padding method due to NavBar being sticky */}
+          <br /> <br /> <br />
+          <ArmourApp />
+        </Route>
+
+        {/* Social aggregator page */}
+        <Route exact path="/socials">
+          <Background height={8} />
+          {/* Simple padding method due to NavBar being sticky */}
+          <br /> <br /> <br />
+          <SocialApp />
+        </Route>
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -40,7 +40,7 @@ class Background extends Component<{height: number, width: number}, {}> {
 
     render() {
         return(
-            <Grid style={{position:'absolute', left:'0px', top:'45px', zIndex:'-1', width: '100%', margin:'0'}}>
+            <Grid style={{position:'absolute', left:'0', top:'0', zIndex:'-1', width: '100%', height:'100vh', overflowY:'hidden', margin:'0'}}>
                 {this.generateSquareSet(this.props.height, this.props.width)}
             </Grid>
         )

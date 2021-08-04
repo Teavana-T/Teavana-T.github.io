@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Card, Image, Placeholder } from "semantic-ui-react";
 
-import { yoimiya } from "../Images";
+import { yoimiya } from "../../Images";
 
 class NepetaPage extends Component {
 

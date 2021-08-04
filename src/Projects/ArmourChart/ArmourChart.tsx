@@ -2,7 +2,7 @@ import { FlexibleWidthXYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLin
 import React, { Component } from 'react';
 import { Container } from 'semantic-ui-react';
 
-import '../../node_modules/react-vis/dist/style.css';
+import '../../../node_modules/react-vis/dist/style.css';
 
 class ArmourChart extends Component<{
     armour: number,

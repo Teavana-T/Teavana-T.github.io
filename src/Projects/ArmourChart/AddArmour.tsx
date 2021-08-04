@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Header, Button, Image, Divider, Dropdown } from 'semantic-ui-react';
 import update from 'immutability-helper';
 
-import { Leather, Iron, Gold, Diamond, Netherite } from '../Images';
+import { Leather, Iron, Gold, Diamond, Netherite } from '../../Images';
 
 class AddArmourDisplay extends Component<{
     lineData: {

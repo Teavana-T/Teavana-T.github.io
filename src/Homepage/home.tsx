@@ -1,19 +1,67 @@
+import { homedir } from "os";
 import { Component } from "react";
-import { Card, Container, Image } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Card, Container, Header, Icon, Image, Label, Popup, Segment, Grid, Tab, Menu, Button } from "semantic-ui-react";
 
-import { Logo } from "../Images/index";
+import { badDiscord, badImage, Logo } from "../Images/index";
 
-class Home extends Component {
+class Home extends Component<{ projects: any[] }, { activeIndex: string }> {
+    constructor(props: any){
+        super(props);
+
+        this.state = {
+            activeIndex: 'armour-app'
+        }
+    }
+
+    getProjectPanes() {
+        let projects: any[] = [];
+        this.props.projects.forEach(project => (
+            projects.push({
+                menuItem: { key: project.key, content: project.name },
+                render: () => <Tab.Pane color='black' inverted >{project.preview}</Tab.Pane>
+            })
+        ));
+
+        return (projects)
+    }
+
+    handleTabChange(e: any, d: any) {
+        console.log(d);
+        this.setState({activeIndex: d.panes[d.activeIndex].menuItem.key});
+    }
+
+    static headerPopup = 'Currently each project is within the single repository, this will be changed at a later date and repo links will be provided';
+
     render() {
         return (
-            <Container style={{marginTop:'14px'}} textAlign='center' >
-                <Card centered >
-                    <Image src={Logo} />
-                    <Card.Content>
-                        <Card.Header>Teavana</Card.Header>
-                        <Card.Description>This is my site, it's not very special and there's many like it but this one is mine and I like my site.</Card.Description>
-                    </Card.Content>
-                </Card>
+            <Container>
+                <Grid>
+                    <Grid.Row>
+                        <Grid.Column floated='left' width={7} >
+                            <Card as={Link} to='/socials/' >
+                                <Image src={Logo} />
+                                <Card.Content>
+
+                                    <Card.Header content='Teavana' />
+                                    <Card.Meta content='View my socials' />
+                                </Card.Content>
+                            </Card>
+                        </Grid.Column>
+                        <Grid.Column floated='right' width={9} >
+
+                            <Header size='large'><span>My Projects <Popup content={Home.headerPopup} trigger={<Icon style={{ float: 'right' }} name='question circle outline' />} /></span> </Header>
+
+                            <Tab onTabChange={(e, d) => this.handleTabChange(e, d)} menu={{ fluid: true, vertical: true, pointing: true, secondary: true }} menuPosition='left' panes={this.getProjectPanes()} />
+                            <br />
+                            <Button as={Link} to={`/${this.state.activeIndex}`} color='green' floated='right'  >
+                                Go
+                                <Icon name='arrow right' />
+                            </Button>
+
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </Container>
         );
     }

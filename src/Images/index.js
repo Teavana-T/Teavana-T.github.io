@@ -13,6 +13,9 @@ import Logo from './logo.png';
 
 import yoimiya from './yoimiya.png';
 
+import badImage from './badimage.png';
+import badDiscord from './baddiscord.png';
+
 export {
     ArmourIcon,
     ToughnessIcon,
@@ -24,5 +27,7 @@ export {
     Netherite,
     LogoCircle,
     Logo,
-    yoimiya
+    yoimiya,
+    badImage,
+    badDiscord
 };
