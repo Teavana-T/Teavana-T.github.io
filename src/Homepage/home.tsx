@@ -52,7 +52,7 @@ class Home extends Component<{ projects: any[] }, { activeIndex: string }> {
 
                             <Header size='large'><span>My Projects <Popup content={Home.headerPopup} trigger={<Icon style={{ float: 'right' }} name='question circle outline' />} /></span> </Header>
 
-                            <Tab onTabChange={(e, d) => this.handleTabChange(e, d)} menu={{ fluid: true, vertical: true, pointing: true, secondary: true }} menuPosition='left' panes={this.getProjectPanes()} />
+                            <Tab onTabChange={(e, d) => this.handleTabChange(e, d)} menu={<Menu  fluid secondary vertical pointing />} menuPosition='left' panes={this.getProjectPanes()} />
                             <br />
                             <Button as={Link} to={`/${this.state.activeIndex}`} color='green' floated='right'  >
                                 Go

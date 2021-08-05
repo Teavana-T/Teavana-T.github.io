@@ -10,7 +10,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 // 'Webpage' Components
 import Home from './Homepage/home';
-import ArmourApp from './Projects/ArmourChart/ArmourCore';
+import ArmourApp from './Projects/ArmourApp/ArmourCore';
 import SocialApp from './Projects/SocialApp/SocialCore';
 import NepetaPage from './Projects/NepetaDisplay/nepetaCore';
 

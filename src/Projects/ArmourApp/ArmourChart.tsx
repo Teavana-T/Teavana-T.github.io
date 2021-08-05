@@ -1,13 +1,10 @@
-import { FlexibleWidthXYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries } from 'react-vis';
+import { FlexibleWidthXYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Hint } from 'react-vis';
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, Popup } from 'semantic-ui-react';
 
 import '../../../node_modules/react-vis/dist/style.css';
 
-class ArmourChart extends Component<{
-    armour: number,
-    tough: number,
-    prot: number,
+interface ArmourChartProps {
     lineData: {
         color: string,
         name: string,
@@ -15,13 +12,18 @@ class ArmourChart extends Component<{
         index: number
     }[],
     rangeMin: number,
-    rangeMax: number
-}, { one: number }> {
+    rangeMax: number,
+    onValueSubmit: any
+};
+
+class ArmourChart extends Component<ArmourChartProps, { one: number }> {
     constructor(props: any) {
         super(props);
         this.state = {
             one: 1
         };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     makeDataSet(armour: number, toughness: number, prot: number) {
@@ -41,6 +43,14 @@ class ArmourChart extends Component<{
         return (series);
     }
 
+    handleClick(e: any, lineName: string){
+
+        console.log('clik');
+        console.log(e);
+
+        this.props.onValueSubmit('activeDataSet', lineName);
+    }
+
     render() {
         return (
             <Container>
@@ -49,11 +59,21 @@ class ArmourChart extends Component<{
                     <HorizontalGridLines />
                     {
                         this.props.lineData.map(lineInfo => (
-                            <LineSeries data={this.makeDataSet(lineInfo.dataSet.a, lineInfo.dataSet.t, lineInfo.dataSet.p)} color={lineInfo.color} key={lineInfo.name} />
+                            <LineSeries
+                                data={this.makeDataSet(
+                                    lineInfo.dataSet.a,
+                                    lineInfo.dataSet.t,
+                                    lineInfo.dataSet.p)}
+                                color={lineInfo.color}
+                                key={lineInfo.name}
+                                
+                                onSeriesClick={(e) => this.handleClick(e, lineInfo.name)}
+                            />
                         ))
                     }
                     <XAxis title="Raw Damage" />
                     <YAxis title="Damage Taken" />
+
                 </FlexibleWidthXYPlot>
             </Container>
         );
