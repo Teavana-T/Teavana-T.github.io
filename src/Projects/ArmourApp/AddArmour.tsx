@@ -7,7 +7,7 @@ import InputBox from './ValueInput';
 // Importing all the images used
 import { ArmourIcon, ToughnessIcon, ProtIcon } from '../../Images/index';
 import { Leather, Iron, Gold, Diamond, Netherite } from '../../Images/index';
-import { wait, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 
 // Taken from Stack Overflow to manage
 function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] {
@@ -37,34 +37,6 @@ const inputBoxes: { icon: any, name: 'armourValue' | 'toughValue' | 'protValue',
         hint: 'Protection is an enchant, enter your total protection ie. (3x Prot 2 pieces = Prot 6)'
     }
 ]
-
-const vanillaValues: any = {
-    'leather': {
-        color: 'brown',
-        name: 'Leather',
-        dataSet: { a: 7, t: 0, p: 0 },
-    },
-    'iron': {
-        color: '',
-        name: 'Iron',
-        dataSet: { a: 15, t: 0, p: 0 },
-    },
-    'gold': {
-        color: 'yellow',
-        name: 'Gold',
-        dataSet: { a: 11, t: 0, p: 0 },
-    },
-    'diamond': {
-        color: 'teal',
-        name: 'Diamond',
-        dataSet: { a: 20, t: 8, p: 0 },
-    },
-    'netherite': {
-        color: 'black',
-        name: 'Netherite',
-        dataSet: { a: 20, t: 12, p: 0 },
-    }
-}
 
 const vanillaButtons: { value: string, color: SemanticCOLORS | undefined, image: any }[] = [
     {

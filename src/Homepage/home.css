@@ -1,0 +1,78 @@
+/* Central Wobbly Circle */
+
+.wobbleContainer {
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	transform: translate3d(-50%, -50%, 0);
+	z-index: 0;
+}
+
+.wobbleImage {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+}
+
+.wobbleContainer .wobble {
+	width: 400px;
+	height: 400px;
+	background: #FB98FB;
+	border-radius: 50%;
+	transition: all 2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	animation: rotation 15s linear infinite;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Animated Teavana Title */
+
+.teavanaTitle {
+	position: absolute;
+	left: 50%;
+	top: 60%;
+	transform: translate3d(-50%, -50%, 0);
+	z-index: 0;
+}
+
+/* Google chrome */
+@-webkit-keyframes svg-text-anim {
+40% {
+	stroke-dashoffset: 0;
+	fill: transparent;
+	}
+	60% {
+	stroke-dashoffset: 0;
+	fill: #fb98fb;
+	}
+	100% {
+	stroke-dashoffset: 0;
+	fill: #fb98fb;
+	}
+	
+}
+/* Most browsers */
+@keyframes svg-text-anim {
+40% {
+	stroke-dashoffset: 0;
+	fill: transparent;
+	}
+	60% {
+	stroke-dashoffset: 0;
+	fill: #fb98fb;
+	}
+	100% {
+	stroke-dashoffset: 0;
+	fill: #fb98fb;
+	}
+	
+}

@@ -1,6 +1,6 @@
-import { FlexibleWidthXYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Hint } from 'react-vis';
+import { FlexibleWidthXYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries } from 'react-vis';
 import React, { Component } from 'react';
-import { Container, Popup } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 import '../../../node_modules/react-vis/dist/style.css';
 

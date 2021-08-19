@@ -1,0 +1,11 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@primaryColor: #98FB98;
+@pageBackground: #FB98FI;
+
+@olive          : #98FB98;
+@pink           : #FB98FB;
+@blue           : #98CAFB;
+@orange         : #FBCA98;

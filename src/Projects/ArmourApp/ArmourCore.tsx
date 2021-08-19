@@ -4,8 +4,8 @@ import update from 'immutability-helper';
 import { Segment, Container, Divider, Button, Image } from 'semantic-ui-react';
 import { Component } from 'react';
 
-import { badImage } from '../../Images';
 import './ArmourApp.css';
+import { armourSVG } from '../../Images';
 
 interface ArmourAppState {
   armourValue: number,
@@ -205,7 +205,7 @@ class ArmourApp extends Component<{}, ArmourAppState> {
   }
 
   static preview = <span>
-    <Image src={badImage} floated='left' size='mini' />
+    <Image src={armourSVG} floated='left' size='mini' />
     An app to calculate damage taken from raw damage values and equipped armour pieces
   </span>
 }

@@ -6,16 +6,19 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import 'semantic-ui-css/semantic.min.css';
+import 'semantic-ui-less/semantic.less';
 
 // 'Webpage' Components
 import Home from './Homepage/home';
 import ArmourApp from './Projects/ArmourApp/ArmourCore';
 import SocialApp from './Projects/SocialApp/SocialCore';
-import NepetaPage from './Projects/NepetaDisplay/nepetaCore';
 
+// 'Staple' Components
 import NavBar from './NavBar';
-import Background from './background';
+import Background from './Background';
+import Footer from "./Footer";
+import FakeReviewCore from './Projects/FakeReviews/FakeReviewCore';
+import { Container, Header, Segment } from 'semantic-ui-react';
 
 
 
@@ -29,12 +32,12 @@ let projects = [
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <NavBar page='/' />
       <Switch>
-
         {/* Home page */}
         <Route exact path="/">
-          <Background height={8} />
+          <NavBar page='home' />
+          <Background />
+          <Footer />
           {/* Simple padding method due to NavBar being sticky */}
           <br /> <br /> <br />
           <Home projects={projects} />
@@ -42,7 +45,9 @@ ReactDOM.render(
 
         {/* Armour chart app page */}
         <Route path="/armour-app">
+          <NavBar page='aApp' />
           <Background />
+          <Footer />
           {/* Simple padding method due to NavBar being sticky */}
           <br /> <br /> <br />
           <ArmourApp />
@@ -50,10 +55,35 @@ ReactDOM.render(
 
         {/* Social aggregator page */}
         <Route exact path="/socials">
-          <Background height={8} />
+          <NavBar page='sApp' />
+          <Background />
+          <Footer />
           {/* Simple padding method due to NavBar being sticky */}
           <br /> <br /> <br />
           <SocialApp />
+        </Route>
+
+        <Route exact path="/fake-review">
+          <NavBar page='fReview' />
+          <Background />
+          <Footer />
+          {/* Simple padding method due to NavBar being sticky */}
+          <br /> <br /> <br />
+          <FakeReviewCore />
+        </Route>
+
+        <Route>
+          <NavBar page='404' />
+          <Background />
+          <Footer />
+          {/* Simple padding method due to NavBar being sticky */}
+          <br /> <br /> <br />
+          <Container>
+            <Segment>
+              <Header content='404 - Page not found' dividing />
+              We couldn't find the page you asked for! If you believe this is an error please contact me through me email (found in social page)
+            </Segment>
+          </Container>
         </Route>
       </Switch>
     </Router>

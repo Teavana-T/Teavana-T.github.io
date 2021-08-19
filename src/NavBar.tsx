@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Image, Dropdown, Input, Icon, Transition } from 'semantic-ui-react';
-
-import { LogoCircle, ArmourIcon } from './Images';
+import { Menu, Icon, Transition } from 'semantic-ui-react';
 
 class NavBar extends Component<{ page: string }, { isActive: string, visible: boolean }> {
     constructor(props: any) {
@@ -14,9 +12,16 @@ class NavBar extends Component<{ page: string }, { isActive: string, visible: bo
         }
     }
 
+    componentDidMount () {
+        
+    }
+
     render() {
+        if ( this.props.page !== this.state.isActive ) {
+            this.setState({'isActive': this.props.page});
+        }
+
         const { isActive } = this.state;
-        console.log(this.props.page);
 
         return (
             <span>
@@ -32,14 +37,14 @@ class NavBar extends Component<{ page: string }, { isActive: string, visible: bo
                             Close Menu 
                             <Icon name='close'/>
                         </Menu.Item>
-                        <Menu.Item as={Link} to='/' onClick={() => this.setState({visible: false})} >
+                        <Menu.Item as={Link} active={isActive === 'home'} to='/' onClick={() => this.setState({visible: false})} >
                             <Icon name='home' />
                             Home
                         </Menu.Item>
-                        <Menu.Item as={Link} to='/armour-app' onClick={() => this.setState({visible: false})} >
+                        <Menu.Item as={Link} active={isActive === 'aApp'} to='/armour-app' onClick={() => this.setState({visible: false})} >
                             Armour App
                         </Menu.Item>
-                        <Menu.Item as={Link} to='/socials' onClick={() => this.setState({visible: false})} >
+                        <Menu.Item as={Link} active={isActive === 'sApp'} to='/socials' onClick={() => this.setState({visible: false})} >
                             Social page
                         </Menu.Item>
                     </Menu>
