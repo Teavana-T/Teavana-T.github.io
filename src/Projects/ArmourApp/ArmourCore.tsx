@@ -53,11 +53,9 @@ class ArmourApp extends Component<{}, ArmourAppState> {
 
     this.onValueSubmit = this.onValueSubmit.bind(this);
     this.createLineData = this.createLineData.bind(this);
-    this.dropdownChange = this.dropdownChange.bind(this);
     this.spliceLineData = this.spliceLineData.bind(this);
     this.handleChangeSet = this.handleChangeSet.bind(this);
     this.sortLineData = this.sortLineData.bind(this);
-    this.nameChange = this.nameChange.bind(this);
     this.selectVanillaSet = this.selectVanillaSet.bind(this);
   }
 
@@ -102,14 +100,6 @@ class ArmourApp extends Component<{}, ArmourAppState> {
     this.onValueSubmit('activeDataSet', activeSet);
 }
 
-  dropdownChange(e: any, d: any) {
-    this.onValueSubmit('color', d.value);
-  }
-
-  nameChange(e: any, d: any) {
-    this.onValueSubmit('lineName', d.value);
-  }
-
   sortLineData(lineData: any) {
     let lineArray: { color: string, name: string, dataSet: { a: number, t: number, p: number }, index: number }[] = [];
 
@@ -153,6 +143,8 @@ class ArmourApp extends Component<{}, ArmourAppState> {
 
     const newData = update(this.state, { lineData: { $set: lineData } })
     this.setState(newData);
+
+    
   }
 
   selectVanillaSet(set: string) {
@@ -178,8 +170,6 @@ class ArmourApp extends Component<{}, ArmourAppState> {
             createLineData={this.createLineData}
             onValueSubmit={this.onValueSubmit}
             selectVanillaSet={this.selectVanillaSet}
-            dropdownChange={this.dropdownChange}
-            nameChange={this.nameChange}
             spliceLineData={this.spliceLineData}
             handleChangeSet={this.handleChangeSet}
             lineData={this.state.lineData}

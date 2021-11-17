@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Container, Segment, Tab } from "semantic-ui-react";
 
 import { LogoNoBG, TeavanaTitleSVG } from "../Images/index";
@@ -28,6 +28,7 @@ class Wobble extends Component {
     render() {
         return (
             <div className="wobbleContainer">
+                
                 <div className="wobble" />
                 <img src={LogoNoBG} className='wobbleImage' alt="Teavana's Logo" />
             </div>
@@ -45,6 +46,7 @@ class TeavanaTitle extends Component<any> {
         this.setTextAnimation = this.setTextAnimation.bind(this);
     }
 
+    /* ripped  */
     setTextAnimation(delay: any, duration: any, strokeWidth: any, timingFunction: any, strokeColor: any, repeat: any) {
         let paths = this.titleRef.current!.querySelectorAll("path");
         let mode = repeat ? 'infinite' : 'forwards';
@@ -56,15 +58,25 @@ class TeavanaTitle extends Component<any> {
             path.style.strokeDasharray = `${length}px`;
             path.style.strokeWidth = `${strokeWidth}px`;
             path.style.stroke = `${strokeColor}`;
-            path.style.animation = `${duration}s svg-text-anim ${mode} ${timingFunction}`;
+            //path.style.animation = `${duration}s svg-text-anim ${mode} ${timingFunction}`;
+            path.style.animationName = 'svg-text-anim';
+            path.style.animationDuration = `${duration}s`; 
+            path.style.animationTimingFunction = `${timingFunction}`; 
             path.style.animationDelay = `${i * delay}s`;
+            path.style.animationDirection = 'normal';
+            path.style.animationIterationCount = `${mode}`;
+            path.style.animationFillMode = `forwards`;
+            path.style.animationPlayState = 'running'; 
             
         }
     }
 
+    componentDidMount = () => this.setTextAnimation(0.5, 5.5, 1, 'ease-in', '#1b1c1d', false);
+
     render() {
+
         return (
-            <div className='teavanaTitle' ref={this.titleRef} onMouseOver={() => this.setTextAnimation(0.5, 5.5, 1, 'ease-in', '#fb98fb', false)} >
+            <div className='teavanaTitle' ref={this.titleRef}  >
                 {TeavanaTitleSVG}
             </div>
         )
@@ -101,10 +113,13 @@ class Home extends Component<{ projects: any[] }, { activeIndex: string }> {
 
     render() {
         return (
-            <React.Fragment>
+            <Container>
                 <Wobble />
+                <br />
+                <br />
+                <br />
                 <TeavanaTitle />
-            </React.Fragment>
+            </Container>
         );
     }
 }

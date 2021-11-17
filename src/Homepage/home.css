@@ -1,21 +1,26 @@
 /* Central Wobbly Circle */
 
 .wobbleContainer {
-	position: absolute;
-	left: 50%;
-	top: 30%;
-	transform: translate3d(-50%, -50%, 0);
-	z-index: 0;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px; 
+	/* transform: translate3d(-50%, 0, 0); */
 }
 
 .wobbleImage {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	z-index: 1;
+	grid-area: 1 / 1 / 2 / 2;
+	margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .wobbleContainer .wobble {
+	grid-area: 1 / 1 / 2 / 2;
+	margin-left: auto;
+    margin-right: auto;
 	width: 400px;
 	height: 400px;
 	background: #FB98FB;
@@ -37,11 +42,10 @@
 /* Animated Teavana Title */
 
 .teavanaTitle {
-	position: absolute;
-	left: 50%;
-	top: 60%;
-	transform: translate3d(-50%, -50%, 0);
-	z-index: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+	/* transform: translate3d(-25%, -50%, 0); */
 }
 
 /* Google chrome */

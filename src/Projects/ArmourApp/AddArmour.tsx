@@ -70,8 +70,6 @@ const vanillaButtons: { value: string, color: SemanticCOLORS | undefined, image:
 interface AddArmourProps {
     onValueSubmit: any,
     selectVanillaSet: any,
-    dropdownChange: any,
-    nameChange: any,
     createLineData: any,
     spliceLineData: any,
     handleChangeSet: any,
@@ -138,11 +136,7 @@ class AddArmour extends Component<AddArmourProps, AddArmourState> {
     }
 
     onTrash(){
-        
-        waitFor(this.props.spliceLineData(this.props.coreState.activeDataSet))
-
-        this.props.onValueSubmit('activeDataSet', '')
-        
+        this.props.spliceLineData(this.props.coreState.activeDataSet)
     }
 
     render() {
@@ -157,7 +151,7 @@ class AddArmour extends Component<AddArmourProps, AddArmourState> {
                         <Dropdown
                             placeholder='Pick a color'
                             value={this.props.coreState.color}
-                            onChange={this.props.dropdownChange}
+                            onChange={(e, d) => this.props.onValueSubmit('color', d.value)}
                             options={this.createColorDropSet()}
                             style={{ marginTop: '10px', width: '40%' }}
                         />
@@ -165,7 +159,7 @@ class AddArmour extends Component<AddArmourProps, AddArmourState> {
                             basic
                             inverted
                             value={this.props.coreState.lineName}
-                            onChange={this.props.nameChange}
+                            onChange={(e, d) => this.props.onValueSubmit('lineName', d.value)}
                             placeholder='Enter name'
                             style={{ width: '60%', float: 'right' }}
                         />

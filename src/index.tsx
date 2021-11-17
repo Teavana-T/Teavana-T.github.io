@@ -10,14 +10,16 @@ import 'semantic-ui-less/semantic.less';
 
 // 'Webpage' Components
 import Home from './Homepage/home';
+import CV from './CurriculumVitae/cv';
 import ArmourApp from './Projects/ArmourApp/ArmourCore';
 import SocialApp from './Projects/SocialApp/SocialCore';
+import GameOfLife from './Projects/GameOfLife/GameOfLifeCore';
 
 // 'Staple' Components
 import NavBar from './NavBar';
 import Background from './Background';
-import Footer from "./Footer";
 import FakeReviewCore from './Projects/FakeReviews/FakeReviewCore';
+
 import { Container, Header, Segment } from 'semantic-ui-react';
 
 
@@ -37,19 +39,20 @@ ReactDOM.render(
         <Route exact path="/">
           <NavBar page='home' />
           <Background />
-          <Footer />
-          {/* Simple padding method due to NavBar being sticky */}
-          <br /> <br /> <br />
           <Home projects={projects} />
+        </Route>
+
+        {/* CV */}
+        <Route exact path="/cv">
+          <NavBar page='cv' />
+          <Background />
+          <CV />
         </Route>
 
         {/* Armour chart app page */}
         <Route path="/armour-app">
           <NavBar page='aApp' />
           <Background />
-          <Footer />
-          {/* Simple padding method due to NavBar being sticky */}
-          <br /> <br /> <br />
           <ArmourApp />
         </Route>
 
@@ -57,27 +60,24 @@ ReactDOM.render(
         <Route exact path="/socials">
           <NavBar page='sApp' />
           <Background />
-          <Footer />
-          {/* Simple padding method due to NavBar being sticky */}
-          <br /> <br /> <br />
           <SocialApp />
         </Route>
 
         <Route exact path="/fake-review">
           <NavBar page='fReview' />
           <Background />
-          <Footer />
-          {/* Simple padding method due to NavBar being sticky */}
-          <br /> <br /> <br />
           <FakeReviewCore />
+        </Route>
+
+        <Route exact path="/game-of-life">
+          <NavBar page='GoL' />
+          <Background />
+          <GameOfLife />
         </Route>
 
         <Route>
           <NavBar page='404' />
           <Background />
-          <Footer />
-          {/* Simple padding method due to NavBar being sticky */}
-          <br /> <br /> <br />
           <Container>
             <Segment>
               <Header content='404 - Page not found' dividing />

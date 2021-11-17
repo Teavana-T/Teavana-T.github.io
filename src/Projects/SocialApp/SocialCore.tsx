@@ -78,8 +78,6 @@ class SocialApp extends Component {
         const platforms = this.platforms;
 
         return (
-
-
             <Container>
                 <Header content='Social Media' dividing textAlign='center' />
                 <Card.Group centered >
