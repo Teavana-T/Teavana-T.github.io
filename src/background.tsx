@@ -13,7 +13,7 @@ class Background extends Component<{height: number, width: number}, any> {
     }
 
     static defaultProps = {
-        height: 8,
+        height: 16,
         width: 8
     }
 

@@ -23,7 +23,6 @@ import FakeReviewCore from './Projects/FakeReviews/FakeReviewCore';
 import { Container, Header, Segment } from 'semantic-ui-react';
 
 
-
 // import reportWebVitals from './reportWebVitals';
 
 let projects = [
@@ -45,7 +44,6 @@ ReactDOM.render(
         {/* CV */}
         <Route exact path="/cv">
           <NavBar page='cv' />
-          <Background />
           <CV />
         </Route>
 

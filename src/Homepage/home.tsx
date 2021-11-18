@@ -27,8 +27,7 @@ class Wobble extends Component {
 
     render() {
         return (
-            <div className="wobbleContainer">
-                
+            <div className="wobbleContainer">              
                 <div className="wobble" />
                 <img src={LogoNoBG} className='wobbleImage' alt="Teavana's Logo" />
             </div>
