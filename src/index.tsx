@@ -42,7 +42,7 @@ ReactDOM.render(
         </Route>
 
         {/* CV */}
-        <Route exact path="/cv">
+        <Route path="/cv">
           <NavBar page='cv' />
           <CV />
         </Route>
@@ -55,19 +55,19 @@ ReactDOM.render(
         </Route>
 
         {/* Social aggregator page */}
-        <Route exact path="/socials">
+        <Route path="/socials">
           <NavBar page='sApp' />
           <Background />
           <SocialApp />
         </Route>
 
-        <Route exact path="/fake-review">
+        <Route path="/fake-review">
           <NavBar page='fReview' />
           <Background />
           <FakeReviewCore />
         </Route>
 
-        <Route exact path="/game-of-life">
+        <Route path="/game-of-life">
           <NavBar page='GoL' />
           <Background />
           <GameOfLife />
