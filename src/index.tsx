@@ -14,6 +14,8 @@ import CV from './CurriculumVitae/cv';
 import ArmourApp from './Projects/ArmourApp/ArmourCore';
 import SocialApp from './Projects/SocialApp/SocialCore';
 import GameOfLife from './Projects/GameOfLife/GameOfLifeCore';
+import SDewBundles from './Projects/StardewDump/Bundles/Bundles';
+import Luccus from './Projects/Luccus/Luccus';
 
 // 'Staple' Components
 import NavBar from './NavBar';
@@ -21,6 +23,7 @@ import Background from './Background';
 import FakeReviewCore from './Projects/FakeReviews/FakeReviewCore';
 
 import { Container, Header, Segment } from 'semantic-ui-react';
+
 
 
 // import reportWebVitals from './reportWebVitals';
@@ -71,6 +74,16 @@ ReactDOM.render(
           <NavBar page='GoL' />
           <Background />
           <GameOfLife />
+        </Route>
+
+        <Route path="/luccus-wildus">
+          <NavBar page='luccusWildus' />
+          <Luccus />
+        </Route>
+
+        <Route path="/bundles">
+          <NavBar page='bundles' />
+          <SDewBundles />
         </Route>
 
         <Route>

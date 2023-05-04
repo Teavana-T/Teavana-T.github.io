@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Icon, Transition } from 'semantic-ui-react';
+import { Menu, Icon, Transition, Dropdown } from 'semantic-ui-react';
 
 class NavBar extends Component<{ page: string }, { isActive: string, visible: boolean }> {
     constructor(props: any) {
@@ -25,18 +25,9 @@ class NavBar extends Component<{ page: string }, { isActive: string, visible: bo
 
         return (
             <span>
-                <Menu fixed='top' inverted>
-                    <Menu.Item onClick={() => this.setState({visible: true})} >
-                        <Icon name='bars' /> Menu
-
-                    </Menu.Item>
-                </Menu>
-                <Transition visible={this.state.visible} animation='slide right'>
-                    <Menu fixed='left' vertical inverted >
-                        <Menu.Item onClick={() => this.setState({visible: false})} >
-                            Close Menu 
-                            <Icon name='close'/>
-                        </Menu.Item>
+                
+                    <Menu fixed='top' inverted >
+                        
                         <Menu.Item as={Link} active={isActive === 'home'} to='/' onClick={() => this.setState({visible: false})} >
                             <Icon name='home' />
                             Home
@@ -47,8 +38,19 @@ class NavBar extends Component<{ page: string }, { isActive: string, visible: bo
                         <Menu.Item as={Link} active={isActive === 'sApp'} to='/socials' onClick={() => this.setState({visible: false})} >
                             Social page
                         </Menu.Item>
+                        <Menu.Item as={Dropdown} item text='Stardew Valley'>
+                            <Dropdown.Menu>
+                                <Dropdown.Item as={Link} to='/bundles' content='Bundles' />
+                            </Dropdown.Menu>
+                        </Menu.Item>
+                        <Menu.Item as='a' href='https://discord.gg/Mh8Q3tCYC6'  position='right'>
+                            Discord
+                        </Menu.Item>
+                        {/* <Menu.Item>
+                        <iframe src="https://discord.com/widget?id=644919621878546432&theme=dark" width="175" height="500" allowTransparency={true} frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                        </Menu.Item> */}
                     </Menu>
-                </Transition>
+                
             </span>
         );
     }

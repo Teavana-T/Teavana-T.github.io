@@ -7,7 +7,6 @@ import InputBox from './ValueInput';
 // Importing all the images used
 import { ArmourIcon, ToughnessIcon, ProtIcon } from '../../Images/index';
 import { Leather, Iron, Gold, Diamond, Netherite } from '../../Images/index';
-import { waitFor } from "@testing-library/react";
 
 // Taken from Stack Overflow to manage
 function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] {

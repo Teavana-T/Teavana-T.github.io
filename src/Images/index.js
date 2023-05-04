@@ -20,6 +20,7 @@ import DiscordLogo from './DiscordLogo.svg';
 import SteamLogo from './SteamLogo.svg';
 import SpotifyLogo from './SpotifyLogo.svg';
 import TwitterLogo from './TwitterLogo.svg';
+import InstagramLogo from './InstagramLogo.svg';
 
 import armourSVG from './armourIcon.svg'
 import badDiscord from './baddiscord.png';
@@ -49,6 +50,7 @@ export {
     SteamLogo,
     SpotifyLogo,
     TwitterLogo,
+    InstagramLogo,
 
     armourSVG,
     badDiscord,

@@ -4,7 +4,7 @@ import { SemanticWIDTHS } from "semantic-ui-react/dist/commonjs/generic";
 import './background.css';
 
 
-class Background extends Component<{height: number, width: number}, any> {
+class Background extends Component<{height: number, width: number, colour: number[]}, any> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -14,7 +14,8 @@ class Background extends Component<{height: number, width: number}, any> {
 
     static defaultProps = {
         height: 16,
-        width: 8
+        width: 8,
+        colour: [152, 252, 152]
     }
 
     generateSquares(width: number, colour: number[], colourOffset: number) {
@@ -28,13 +29,11 @@ class Background extends Component<{height: number, width: number}, any> {
         return(squareArray);
     }
 
-    generateSquareSet(height: number, width: number) {
+    generateSquareSet(height: number, width: number, colour: number[]) {
 
         let squareArray: any[] = [];
 
         let colourOffset = ((57/width)/height)*2;
-
-        let colour: number[] = [152, 251, 152];
 
         for (let i=0; i < height; i++) {
             squareArray.push(<Grid.Row key={i} style={{padding:0}}>{this.generateSquares(width, colour, colourOffset)}</Grid.Row>)
@@ -45,7 +44,7 @@ class Background extends Component<{height: number, width: number}, any> {
     }
 
     componentDidMount() {
-        this.setState({squareSet: this.generateSquareSet(this.props.height, this.props.width)})
+        this.setState({squareSet: this.generateSquareSet(this.props.height, this.props.width, this.props.colour)})
     }
 
     render() {

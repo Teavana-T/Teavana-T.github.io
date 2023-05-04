@@ -1,6 +1,6 @@
 import { Component } from "react";
-import { Card, Container, Divider, Header, Icon, Image } from "semantic-ui-react";
-import { DiscordLogo, EmailIcon, SnapchatLogo, SpotifyLogo, SteamLogo, TwitterLogo } from "../../Images";
+import { Card, Container, Divider, Grid, Header, Icon, Image } from "semantic-ui-react";
+import { DiscordLogo, EmailIcon, SnapchatLogo, SpotifyLogo, SteamLogo, TwitterLogo, InstagramLogo } from "../../Images";
 
 class SocialCard extends Component<{ content: any }, {}> {
     render() {
@@ -30,7 +30,7 @@ class SocialApp extends Component {
         },
         {
             header: 'Discord',
-            user: 'Teavana#1339',
+            user: 'Teavana#0001',
             desc: 'A messaging and VoIP platform with many additional features',
             image: DiscordLogo,
             link: 'https://discordapp.com/users/152413452525240320/'
@@ -48,7 +48,14 @@ class SocialApp extends Component {
             desc: 'Twitter is a microblogging and social networking service',
             image: TwitterLogo,
             link: 'https://twitter.com/TeavanaST'
-        }      
+        },
+        {
+            header: 'Instagram',
+            user: 'teavana.t',
+            desc: 'Instagram is an image-forward sharing platform sharing many common features',
+            image: InstagramLogo,
+            link: 'https://www.instagram.com/teavana.t/'
+        }
     ]
 
     platforms = [
@@ -80,14 +87,23 @@ class SocialApp extends Component {
         return (
             <Container>
                 <Header content='Social Media' dividing textAlign='center' />
-                <Card.Group centered >
-                    {/* <SocialCard content={socials.snapchat} /> */}
-                    {socials.map(content => <SocialCard content={content} />)}
-                </Card.Group>
-                <Header content='Contact & Platforms' dividing textAlign='center' />
-                <Card.Group centered >
-                    {platforms.map(content => <SocialCard content={content} />)}
-                </Card.Group>
+                <Grid columns={12} >
+                    <Grid.Row>
+                        <Grid.Column width={ 16 } >
+                            <Card.Group centered >
+                                {socials.map(content => <SocialCard content={content} />)}
+                            </Card.Group>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={16} >
+                            <Header content='Contact & Platforms' dividing textAlign='center' />
+                            <Card.Group centered >
+                                {platforms.map(content => <SocialCard content={content} />)}
+                            </Card.Group>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </Container>
         );
     }

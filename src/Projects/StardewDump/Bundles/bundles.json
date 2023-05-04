@@ -1,0 +1,35 @@
+{
+    "boards": [
+        {
+            "name": "Crafts Room",
+            "bundles": [
+                {
+                    "name": "Spring Foraging",
+                    "itemsRequired": 4,
+                    "itemsAccepted": [
+                        {
+                            "name": "Wild Horseradish",
+                            "quality": "any",
+                            "amount": 1
+                        },
+                        {
+                            "name": "Daffodil",
+                            "quality": "any",
+                            "amount": 1
+                        },
+                        {
+                            "name": "Leek",
+                            "quality": "any",
+                            "amount": 1
+                        },
+                        {
+                            "name": "Dandelion",
+                            "quality": "any",
+                            "amount": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

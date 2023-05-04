@@ -1,4 +1,4 @@
-import ArmourChart from './ArmourChart';
+// import ArmourChart from './ArmourChart';
 import AddArmour from './AddArmour';
 import update from 'immutability-helper';
 import { Segment, Container, Divider, Button, Image } from 'semantic-ui-react';
@@ -178,12 +178,12 @@ class ArmourApp extends Component<{}, ArmourAppState> {
 
           <Divider style={{ marginLeft: '14px' }} inverted />
 
-          <ArmourChart
+          {/* <ArmourChart
             lineData={this.state.lineData}
             rangeMin={this.state.rangeMin}
             rangeMax={this.state.rangeMax}
             onValueSubmit={this.onValueSubmit}
-          />
+          /> */}
           <Container style={{ paddingLeft: '14px' }}>
             <Button icon='refresh' color='green' inverted
               onClick={() => console.log(this.state)}
