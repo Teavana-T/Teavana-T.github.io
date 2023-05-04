@@ -1,6 +1,6 @@
 // import ArmourChart from './ArmourChart';
 import AddArmour from './AddArmour';
-import update from 'immutability-helper';
+// import update from 'immutability-helper';
 import { Segment, Container, Divider, Button, Image } from 'semantic-ui-react';
 import { Component } from 'react';
 
@@ -51,7 +51,7 @@ class ArmourApp extends Component<{}, ArmourAppState> {
       ]
     };
 
-    this.onValueSubmit = this.onValueSubmit.bind(this);
+    // this.onValueSubmit = this.onValueSubmit.bind(this);
     this.createLineData = this.createLineData.bind(this);
     this.spliceLineData = this.spliceLineData.bind(this);
     this.handleChangeSet = this.handleChangeSet.bind(this);
@@ -88,16 +88,16 @@ class ArmourApp extends Component<{}, ArmourAppState> {
   }
 
 
-  onValueSubmit(key: string, value: string) {
-    const newData = update(this.state, { [key]: { $set: value } });
+  // onValueSubmit(key: string, value: string) {
+  //   const newData = update(this.state, { [key]: { $set: value } });
 
-    this.setState(newData);
-  }
+  //   this.setState(newData);
+  // }
 
   handleChangeSet(e: any, data: any) {
     let activeSet: string = data.value === undefined ? '' : data.value
 
-    this.onValueSubmit('activeDataSet', activeSet);
+    // this.onValueSubmit('activeDataSet', activeSet);
 }
 
   sortLineData(lineData: any) {
@@ -129,9 +129,9 @@ class ArmourApp extends Component<{}, ArmourAppState> {
     lineArray.push(lineSet);
     let lineData = this.sortLineData(lineArray);
 
-    const newData = update(this.state, { lineData: { $set: lineData } });
+    // const newData = update(this.state, { lineData: { $set: lineData } });
 
-    this.setState(newData);
+    // this.setState(newData);
   }
 
   spliceLineData(index: number) {
@@ -141,8 +141,8 @@ class ArmourApp extends Component<{}, ArmourAppState> {
     console.log(lineArray);
     let lineData = this.sortLineData(lineArray);
 
-    const newData = update(this.state, { lineData: { $set: lineData } })
-    this.setState(newData);
+    // const newData = update(this.state, { lineData: { $set: lineData } })
+    // this.setState(newData);
 
     
   }
@@ -150,15 +150,15 @@ class ArmourApp extends Component<{}, ArmourAppState> {
   selectVanillaSet(set: string) {
     let valueSet: any = ArmourApp.vanillaValues[set];
 
-    let newData = update(this.state, {
-      armourValue: { $set: valueSet.dataSet.a },
-      toughValue: { $set: valueSet.dataSet.t },
-      protValue: { $set: valueSet.dataSet.p },
-      color: { $set: valueSet.color },
-      lineName: { $set: valueSet.name }
-    });
+    // let newData = update(this.state, {
+    //   armourValue: { $set: valueSet.dataSet.a },
+    //   toughValue: { $set: valueSet.dataSet.t },
+    //   protValue: { $set: valueSet.dataSet.p },
+    //   color: { $set: valueSet.color },
+    //   lineName: { $set: valueSet.name }
+    // });
 
-    this.setState(newData);
+    // this.setState(newData);
 
   }
 
@@ -166,7 +166,7 @@ class ArmourApp extends Component<{}, ArmourAppState> {
     return (
       <Container>
         <Segment inverted style={{ marginTop: '0px', paddingLeft: '0px' }} >
-          <AddArmour
+          {/* <AddArmour
             createLineData={this.createLineData}
             onValueSubmit={this.onValueSubmit}
             selectVanillaSet={this.selectVanillaSet}
@@ -174,7 +174,7 @@ class ArmourApp extends Component<{}, ArmourAppState> {
             handleChangeSet={this.handleChangeSet}
             lineData={this.state.lineData}
             coreState={this.state} 
-          />
+          /> */}
 
           <Divider style={{ marginLeft: '14px' }} inverted />
 

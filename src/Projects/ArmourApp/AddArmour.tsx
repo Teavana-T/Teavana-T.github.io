@@ -177,7 +177,7 @@ class AddArmour extends Component<AddArmourProps, AddArmourState> {
                     <span style={{ position: 'absolute', bottom: '14px', left: '14px' }}>
                         <Button color='green' inverted icon='plus' onClick={this.props.createLineData} />
                         <Dropdown
-                            onOpen={() => this.setState(update(this.state, { optionSets: { $set: this.optionSet() } }))}
+                            //onOpen={() => this.setState(update(this.state, { optionSets: { $set: this.optionSet() } }))}
                             value={this.props.coreState.activeDataSet}
                             onChange={this.props.handleChangeSet}
                             options={this.state.optionSets}

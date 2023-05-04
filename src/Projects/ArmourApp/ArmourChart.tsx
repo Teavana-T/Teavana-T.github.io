@@ -1,4 +1,4 @@
-import { FlexibleWidthXYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries } from 'react-vis';
+//import { FlexibleWidthXYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries } from 'react-vis';
 import React, { Component } from 'react';
 import { Container } from 'semantic-ui-react';
 
@@ -54,7 +54,7 @@ class ArmourChart extends Component<ArmourChartProps, { one: number }> {
     render() {
         return (
             <Container>
-                <FlexibleWidthXYPlot height={300}>
+                {/* <FlexibleWidthXYPlot height={300}>
                     <VerticalGridLines />
                     <HorizontalGridLines />
                     {
@@ -74,7 +74,7 @@ class ArmourChart extends Component<ArmourChartProps, { one: number }> {
                     <XAxis title="Raw Damage" />
                     <YAxis title="Damage Taken" />
 
-                </FlexibleWidthXYPlot>
+                </FlexibleWidthXYPlot> */}
             </Container>
         );
     }
