@@ -1,5 +1,4 @@
 import { Component } from "react";
-import update from "immutability-helper";
 import { Button, Dropdown, Grid, Input, SemanticCOLORS, Image, Header } from "semantic-ui-react";
 
 import InputBox from './ValueInput';
