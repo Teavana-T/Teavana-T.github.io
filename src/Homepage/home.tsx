@@ -113,6 +113,9 @@ class Home extends Component<{ projects: any[] }, { activeIndex: string }> {
     render() {
         return (
             <Container>
+                <br />
+                <br />
+                <br />
                 <Wobble />
                 <br />
                 <br />

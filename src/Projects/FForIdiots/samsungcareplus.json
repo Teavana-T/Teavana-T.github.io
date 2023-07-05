@@ -1,0 +1,20 @@
+{
+    "s2x": [
+        {
+            "name": "1 Year AD",
+            "price": 68
+        },
+        {
+            "name": "1 Year T/L",
+            "price": 92
+        },
+        {
+            "name": "2 Year AD",
+            "price": 127.2
+        },
+        {
+            "name": "2 Year T/L",
+            "price": 68
+        }
+    ]
+}

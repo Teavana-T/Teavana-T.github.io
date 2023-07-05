@@ -24,10 +24,9 @@ class NavBar extends Component<{ page: string }, { isActive: string, visible: bo
         const { isActive } = this.state;
 
         return (
-            <span>
-                
+            <span>  
+                    <br /><br /><br />
                     <Menu fixed='top' inverted >
-                        
                         <Menu.Item as={Link} active={isActive === 'home'} to='/' onClick={() => this.setState({visible: false})} >
                             <Icon name='home' />
                             Home

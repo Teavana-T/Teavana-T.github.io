@@ -1,0 +1,124 @@
+{
+    "s23u": {
+        "name": "S23 Ultra",
+        "scpGroup": "s2x",
+        "sizes": [
+            {
+                "name": "256GB",
+                "rrp": 1249,
+                "price": 1249,
+                "ram": "8GB"
+            },
+            {
+                "name": "512GB",
+                "rrp": 1399,
+                "price": 1399,
+                "ram": "12GB"
+            },
+            {
+                "name": "1TB",
+                "rrp": 1599,
+                "price": 1599,
+                "ram": "12GB"
+            }
+        ],
+        "colours": [
+            {
+                "name": "Phantom Black",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s918-sm-s918bzkheub-thumb-534793388?imwidth=480",
+                "hex": "#000000"
+            },
+            {
+                "name": "Green",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s918-sm-s918bzgheub-thumb-534793225?imwidth=480",
+                "hex": "#60645A"
+            },
+            {
+                "name": "Lavender",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s918-sm-s918bliheub-thumb-534793003?imwidth=480",
+                "hex": "#D3C7D9"
+            },
+            {
+                "name": "Cream",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s918-sm-s918bzeheub-thumb-534793114?imwidth=480",
+                "hex": "#F0EBE1"
+            }
+        ]
+    },
+    "s23p": {
+        "name": "S23+",
+        "scpGroup": "s2x",
+        "sizes": [
+            {
+                "name": "256GB",
+                "rrp": 1049,
+                "price": 1049,
+                "ram": "8GB"
+            },
+            {
+                "name": "512GB",
+                "rrp": 1149,
+                "price": 1149,
+                "ram": "8GB"
+            }
+        ],
+        "colours": [
+            {
+                "name": "Phantom Black",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s916-sm-s916bzkdeub-thumb-535048282?imwidth=480",
+                "hex": "#000000"
+            },
+            {
+                "name": "Green",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s916-sm-s916bzgdeub-thumb-535048151?imwidth=480",
+                "hex": "#60645A"
+            },
+            {
+                "name": "Lavender",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s916-sm-s916blideub-thumb-535048034?imwidth=480",
+                "hex": "#D3C7D9"
+            },
+            {
+                "name": "Cream",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s916-sm-s916bzedeub-thumb-535048094?imwidth=480",
+                "hex": "#F0EBE1"
+            }
+        ]
+    },
+    "s23": {
+        "name": "S23",
+        "scpGroup": "s2x",
+        "sizes": [
+            {
+                "name": "128GB",
+                "rrp": 849,
+                "price": 849,
+                "ram": "8GB"
+            },
+            {
+                "name": "256GB",
+                "rrp": 899,
+                "price": 899,
+                "ram": "8GB"
+            }
+        ],
+        "colours": [
+            {
+                "name": "Phantom Black",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzkdeub-thumb-534791533?imwidth=480",                "hex": "#000000"
+            },
+            {
+                "name": "Green",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzgdeub-thumb-534791495?imwidth=480",                "hex": "#60645A"
+            },
+            {
+                "name": "Lavender",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911blideub-thumb-534791419?imwidth=480",                "hex": "#D3C7D9"
+            },
+            {
+                "name": "Cream",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzedeub-thumb-534791457?imwidth=480",                "hex": "#F0EBE1"
+            }
+        ]
+    }
+}
