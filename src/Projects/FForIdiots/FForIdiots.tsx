@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, Fragment } from "react";
 import { Breadcrumb, Button, Card, Checkbox, Container, Form, Grid, Header, Icon, Image, Input, Label, Message, Segment } from "semantic-ui-react";
 
 import devices from './devices.json';
@@ -55,6 +55,8 @@ class FForIdiots extends Component<any, any> {
             hex: '',
             ram: 0,
 
+            tradeinVal: 0,
+            rrp: 0,
             price: 0,
             care: 0,
 
@@ -73,6 +75,7 @@ class FForIdiots extends Component<any, any> {
         let newState: any = {};
         newState.device = devCode;
         newState.name = device.name;
+
 
         this.setState(newState);
     }
@@ -113,7 +116,7 @@ class FForIdiots extends Component<any, any> {
             </Grid.Column>
         );
 
-        let colourGrid = <Grid columns={4} divided>
+        let colourGrid = <Grid columns={colours.length} divided>
             {colours}
         </Grid>
 
@@ -140,7 +143,12 @@ class FForIdiots extends Component<any, any> {
 
         this.updateSize(devices[devCode as keyof typeof devices].sizes[0])
         this.updateColour(devices[devCode as keyof typeof devices].colours[0])
-        this.setState({ name: device.name, deposit: device.sizes[0].price / 10, tempdeposit: device.sizes[0].price / 10 })
+        this.setState({
+            name: device.name,
+            deposit: device.sizes[0].price / 10,
+            tempdeposit: device.sizes[0].price / 10,
+            tradeinVal: device.tradein
+        })
     }
 
     updateSize(size: any) {
@@ -148,6 +156,7 @@ class FForIdiots extends Component<any, any> {
 
         newState.size = size.name
         newState.price = size.price
+        newState.rrp = size.rrp
         newState.ram = size.ram
 
         this.setState(newState);
@@ -188,7 +197,7 @@ class FForIdiots extends Component<any, any> {
 
         let total = this.state.price;
 
-        total = this.state.tradein ? total - 150 : total;
+        total = this.state.tradein ? total - this.state.tradeinVal : total;
         total = this.state.care + total;
 
 
@@ -206,7 +215,7 @@ class FForIdiots extends Component<any, any> {
                     <Card.Content>
                         <Card.Header>{this.state.name}  </Card.Header>
 
-                        £{this.state.price} <Label >{this.state.size} | {this.state.ram} </Label>
+                        £{this.state.price === this.state.rrp ? this.state.price : <Fragment><s>{this.state.rrp}</s> £{this.state.price}</Fragment>} <Label >{this.state.size} | {this.state.ram} </Label>
                     </Card.Content>
 
                     <Card.Content>
@@ -223,9 +232,13 @@ class FForIdiots extends Component<any, any> {
 
                     {this.getCare()}
                 </Segment>
+                {
+                    this.state.tradeinVal != 0 ?
+                        <Button as={Segment} style={{ textAlign: 'center', width: '100%' }} color={this.state.tradein ? 'green' : 'grey'} value={this.state.tradein} onClick={(e: any, d: any) => this.setState({ tradein: !d.value })}>
+                            Trade in <Icon name={this.state.tradein ? 'check' : 'x'} />
+                        </Button> : ''
+                }
 
-                <Link to='/ffi/s23u' >aaaaaaaaaaaaaaa</Link> <Button onClick={() => console.log(this.props)} /> <Button onClick={() => console.log(this.state)} />
-                Trade in <Checkbox checked={this.state.tradein} value={this.state.tradein} onChange={(e, d) => this.setState({ tradein: !d.value })} toggle />
                 <Segment>
                     <Header>Finance</Header>
 
@@ -274,7 +287,7 @@ class FForIdiots extends Component<any, any> {
                 <Message negative>
                     This is not an official offer nor is it a final offer. These are subject to change, confirm your finance package with a salesperson at the tills.
                 </Message>
-                            </Container>
+            </Container>
         );
     }
 }

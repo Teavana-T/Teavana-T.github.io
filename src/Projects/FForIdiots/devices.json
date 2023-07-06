@@ -2,6 +2,7 @@
     "s23u": {
         "name": "S23 Ultra",
         "scpGroup": "s2x",
+        "tradein": 150,
         "sizes": [
             {
                 "name": "256GB",
@@ -48,17 +49,18 @@
     "s23p": {
         "name": "S23+",
         "scpGroup": "s2x",
+        "tradein": 100,
         "sizes": [
             {
                 "name": "256GB",
                 "rrp": 1049,
-                "price": 1049,
+                "price": 899,
                 "ram": "8GB"
             },
             {
                 "name": "512GB",
                 "rrp": 1149,
-                "price": 1149,
+                "price": 999,
                 "ram": "8GB"
             }
         ],
@@ -88,6 +90,7 @@
     "s23": {
         "name": "S23",
         "scpGroup": "s2x",
+        "tradein": 100,
         "sizes": [
             {
                 "name": "128GB",
@@ -105,19 +108,100 @@
         "colours": [
             {
                 "name": "Phantom Black",
-                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzkdeub-thumb-534791533?imwidth=480",                "hex": "#000000"
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzkdeub-thumb-534791533?imwidth=480",
+                "hex": "#000000"
             },
             {
                 "name": "Green",
-                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzgdeub-thumb-534791495?imwidth=480",                "hex": "#60645A"
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzgdeub-thumb-534791495?imwidth=480",
+                "hex": "#60645A"
             },
             {
                 "name": "Lavender",
-                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911blideub-thumb-534791419?imwidth=480",                "hex": "#D3C7D9"
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911blideub-thumb-534791419?imwidth=480",
+                "hex": "#D3C7D9"
             },
             {
                 "name": "Cream",
-                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzedeub-thumb-534791457?imwidth=480",                "hex": "#F0EBE1"
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzedeub-thumb-534791457?imwidth=480",
+                "hex": "#F0EBE1"
+            }
+        ]
+    },
+    "zfold4": {
+        "name": "Z Fold4",
+        "scpGroup": "zfold",
+        "tradein": 0,
+        "sizes": [
+            {
+                "name": "256GB",
+                "rrp": 1649,
+                "price": 1549,
+                "ram": "12GB"
+            },
+            {
+                "name": "256GB",
+                "rrp": 1769,
+                "price": 1669,
+                "ram": "12GB"
+            }
+        ],
+        "colours": [
+            {
+                "name": "Phantom Black",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2208/gallery/uk-galaxy-z-fold4-f936-sm-f936bzkbeub-thumb-533157604?imwidth=480",
+                "hex": "#000000"
+            },
+            {
+                "name": "Graygreen",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2208/gallery/uk-galaxy-z-fold4-f936-sm-f936bzabeub-thumb-533157362?imwidth=480",
+                "hex": "#4E5A61"
+            },
+            {
+                "name": "Beige",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/2208/gallery/uk-galaxy-z-fold4-f936-sm-f936bzebeub-thumb-533157500?imwidth=480",
+                "hex": "#D6CDC0"
+            }
+        ]
+    },
+    "zflip4": {
+        "name": "Z Flip4",
+        "scpGroup": "zflip",
+        "tradein": 0,
+        "sizes": [
+            {
+                "name": "128GB",
+                "rrp": 999,
+                "price": 899,
+                "ram": "12GB"
+            },
+            {
+                "name": "512GB",
+                "rrp": 1059,
+                "price": 959,
+                "ram": "12GB"
+            }
+        ],
+        "colours": [
+            {
+                "name": "Graphite",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-f721bzageub/gallery/uk-galaxy-z-flip4-f721-sm-f721bzageub-thumb-534230135?imwidth=480",
+                "hex": "#000000"
+            },
+            {
+                "name": "Pink Gold",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-f721bzdgeub/gallery/uk-galaxy-z-flip4-f721-sm-f721bzdgeub-thumb-534230228?imwidth=480",
+                "hex": "#E6D3C9"
+            },
+            {
+                "name": "Blue",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-f721blbgeub/gallery/uk-galaxy-z-flip4-f721-sm-f721blbgeub-thumb-534229962?imwidth=480",
+                "hex": "#B7C1D6"
+            },
+            {
+                "name": "Bora Purple",
+                "img": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-f721blvgeub/gallery/uk-galaxy-z-flip4-f721-sm-f721blvgeub-thumb-534230046?imwidth=480",
+                "hex": "#B2A1CD"
             }
         ]
     }

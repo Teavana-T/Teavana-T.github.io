@@ -16,5 +16,95 @@
             "name": "2 Year T/L",
             "price": 68
         }
+    ],
+    "zfold": [
+        {
+            "name": "1 Year AD",
+            "price": 87.2
+        },
+        {
+            "name": "1 Year T/L",
+            "price": 119.2
+        },
+        {
+            "name": "2 Year AD",
+            "price": 151.2
+        },
+        {
+            "name": "2 Year T/L",
+            "price": 215.2
+        }
+    ],
+    "zflip": [
+        {
+            "name": "1 Year AD",
+            "price": 79.2
+        },
+        {
+            "name": "1 Year T/L",
+            "price": 111.2
+        },
+        {
+            "name": "2 Year AD",
+            "price": 143.2
+        },
+        {
+            "name": "2 Year T/L",
+            "price": 207.2
+        }
+    ],
+    "a5x": [
+        {
+            "name": "1 Year AD",
+            "price": 47.2
+        },
+        {
+            "name": "1 Year T/L",
+            "price": 71.2
+        },
+        {
+            "name": "2 Year AD",
+            "price": 87.2
+        },
+        {
+            "name": "2 Year T/L",
+            "price": 127.2
+        }
+    ],
+    "w5": [
+        {
+            "name": "1 Year AD",
+            "price": 31.99
+        },
+        {
+            "name": "1 Year T/L",
+            "price": 55.99
+        },
+        {
+            "name": "2 Year AD",
+            "price": 71.99
+        },
+        {
+            "name": "2 Year T/L",
+            "price": 95.99
+        }
+    ],
+    "booku": [
+        {
+            "name": "1 Year AD",
+            "price": 52
+        },
+        {
+            "name": "1 Year T/L",
+            "price": 92
+        },
+        {
+            "name": "2 Year AD",
+            "price": 95.2
+        },
+        {
+            "name": "2 Year T/L",
+            "price": 167.2
+        }
     ]
 }
