@@ -10,7 +10,7 @@ import NavBar from './NavBar';
 import Background from './Background';
 import 'semantic-ui-css/semantic.min.css';
 import SDewBundles from './Projects/StardewDump/Bundles/Bundles';
-import FForIdiots from './Projects/FForIdiots/FForIdiots';
+import PackageBuilder from './Projects/FForIdiots/FForIdiots';
 
 import { DeviceList } from './Projects/FForIdiots/FForIdiots';
 
@@ -63,7 +63,7 @@ root.render(
         <Route path='/ffi'
           element={
             <React.Fragment>
-              <DeviceList />
+              <PackageBuilder />
             </React.Fragment>
           }
         />
@@ -71,7 +71,7 @@ root.render(
         <Route path='/ffi/:device'
           element={
             <React.Fragment>
-              <FForIdiots />
+              <PackageBuilder />
             </React.Fragment>
           }
         />

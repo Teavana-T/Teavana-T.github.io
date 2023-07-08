@@ -140,7 +140,7 @@
                 "ram": "12GB"
             },
             {
-                "name": "256GB",
+                "name": "512GB",
                 "rrp": 1769,
                 "price": 1669,
                 "ram": "12GB"
@@ -173,13 +173,13 @@
                 "name": "128GB",
                 "rrp": 999,
                 "price": 899,
-                "ram": "12GB"
+                "ram": "8GB"
             },
             {
-                "name": "512GB",
+                "name": "256GB",
                 "rrp": 1059,
                 "price": 959,
-                "ram": "12GB"
+                "ram": "8GB"
             }
         ],
         "colours": [

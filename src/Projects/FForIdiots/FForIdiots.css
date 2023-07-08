@@ -30,3 +30,20 @@
     background: #04AA6D;
     cursor: pointer;
   }
+
+.slideshow {
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 95vw;
+}
+
+.slideshowSlider {
+  white-space: nowrap;
+
+  transition: ease 1000ms;
+}
+
+.slide {
+  display: inline-block !important;
+  width: 100%;
+}
