@@ -1,5 +1,5 @@
-import { Component, Fragment, ReactNode } from "react";
-import { Breadcrumb, Button, Card, Checkbox, Container, Divider, Form, Grid, Header, Icon, Image, Input, Label, Message, Segment } from "semantic-ui-react";
+import { Component, Fragment } from "react";
+import { Breadcrumb, Button, Card, Container, Divider, Grid, Header, Icon, Image, Input, Label, Loader, Message, Segment } from "semantic-ui-react";
 
 import devices from './devices.json';
 import care from './samsungcareplus.json';
@@ -56,10 +56,52 @@ class PackageBuilder extends Component<any, PackageState> {
                         basket={this.state.basket}
                         updateBasket={this.updateBasket}
                         printBasket={this.printBasket}
-                    /> : <DeviceList />
+                    /> : <Fragment> <DeviceList /> <Divider /> <BundleDisplay /> </Fragment>
                 }
             </Container>
         );
+    }
+}
+
+class BundleDisplay extends Component<any, any> {
+    constructor(props: any){
+        super(props);
+
+        this.state = {
+            loading: true,
+            bundles: {}
+        }
+    }
+
+
+    fetchBundles(){
+        let bundleURL = "https://scissaria.com/vigilant-guacamole/bundles.json"
+
+        fetch(bundleURL).then(
+            (response) => response.json().then(
+                (bundles: any) => this.setState({bundles: bundles.bundles, loading: false})
+            )
+        )
+    }
+
+    displayBundles(){
+        let bundleDisplay = this.state.bundles.map((bundle: any) => <Card>
+            <Card.Content>{bundle.name}</Card.Content>
+        </Card>);
+
+        return bundleDisplay;
+    }
+
+    componentDidMount(){
+        this.fetchBundles()
+    }
+
+    render(){
+        return(<Fragment>
+                {
+                    this.state.loading ? <Loader /> : this.displayBundles()
+                }
+        </Fragment>)
     }
 }
 
