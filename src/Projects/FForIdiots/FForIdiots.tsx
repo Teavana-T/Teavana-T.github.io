@@ -405,11 +405,11 @@ class FForIdiots extends Component<any, any> {
             this.updateDevice(this.props.params.device);
         }
 
-        if (!this.props.loading) {
-            if (this.state.careCost + this.state.price - this.state.tradeinVal !== prevProps.state.careCost + prevProps.state.price - prevProps.state.tradeinVal) {
-                this.setState({ deposit: (this.state.careCost + this.state.price - this.state.tradeinVal) * 0.1 })
-            }
-        }
+        // if (!this.props.loading) {
+        //     if (this.state.careCost + this.state.price - this.state.tradeinVal !== prevProps.state.careCost + prevProps.state.price - prevProps.state.tradeinVal) {
+        //         this.setState({ deposit: (this.state.careCost + this.state.price - this.state.tradeinVal) * 0.1 })
+        //     }
+        // }
     }
 
     render() {
