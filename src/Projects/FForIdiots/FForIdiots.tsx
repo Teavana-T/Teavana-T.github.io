@@ -30,7 +30,8 @@ class PackageBuilder extends Component<any, PackageState> {
             basket: [],
             devices: {},
             care: {},
-            loading: true
+            loading: true,
+            deposit: 0
         }
 
         this.updateBasket = this.updateBasket.bind(this);
@@ -78,9 +79,13 @@ class PackageBuilder extends Component<any, PackageState> {
                     this.state.loading ? <Placeholder /> : <FForIdiots
                         params={this.props.params}
                         basket={this.state.basket}
+                        devices={this.state.devices}
+                        care={this.state.care}
+                        deposit={this.state.deposit}
+                        handleChange={this.handleChange}
                         updateBasket={this.updateBasket}
                         printBasket={this.printBasket}
-                    /> : <Fragment> <DeviceList /> <Divider /> <BundleDisplay /> </Fragment>
+                    /> : <Fragment> <DeviceList state={this.state} devices={this.state.devices} /> <Divider /> <BundleDisplay /> </Fragment>
                 }
             </Container>
         );
@@ -269,7 +274,7 @@ class DeviceList extends Component<any, any> {
             <Container>
                 <br />
                 <Grid >
-                    {this.getList(this.props.devices)}
+                    {this.props.state.loading ? <Loader /> : this.getList(this.props.devices)}
                 </Grid>
             </Container>
         )
