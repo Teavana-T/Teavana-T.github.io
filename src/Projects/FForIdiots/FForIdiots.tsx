@@ -31,7 +31,7 @@ class PackageBuilder extends Component<any, PackageState> {
             devices: {},
             care: {},
             loading: true,
-            deposit: 0
+            deposit: 100
         }
 
         this.updateBasket = this.updateBasket.bind(this);
@@ -161,7 +161,7 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
 
         return (
             <Segment>
-                <Header onClick={() => { this.setState({ collapsed: !this.state.collapsed, tempdeposit: this.props.total * 0.1 }); this.props.handleChange({ target: { name: 'deposit', value: total * 0.1, min: total * 0.1, max: total * 0.5 } }) }}>Finance <Icon style={{ float: 'right' }} name={this.state.collapsed ? 'chevron down' : 'chevron up'} ></Icon></Header>
+                <Header onClick={() => { this.setState({ collapsed: !this.state.collapsed, tempdeposit: this.props.total * 0.1 }) }}>Finance <Icon style={{ float: 'right' }} name={this.state.collapsed ? 'chevron down' : 'chevron up'} ></Icon></Header>
                 {this.state.collapsed ? '' :
                     <Fragment>
                         <Grid style={{ width: '100%' }}>
@@ -191,11 +191,11 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
                                 <Grid.Column width={12}>
                                     <Input
                                         style={{ width: '100%' }}
-                                        min={total * 0.1}
-                                        max={total * 0.5}
+                                        min={100}
+                                        max={800}
                                         name='deposit'
-                                        onChange={(e) => { this.props.handleChange(e); this.setState({ tempdeposit: e.target.value }) }}
-                                        step={total / 100}
+                                        onChange={(e) => { this.props.handleChange(e);  }}
+                                        step={1}
                                         type='range'
                                         value={this.props.deposit}
                                     >
@@ -209,7 +209,7 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
                                         style={{ width: '100%' }}
                                         name='tempdeposit'
                                         onChange={(e) => this.setState({ tempdeposit: e.target.value })}
-                                        value={this.state.tempdeposit}
+                                        value={(this.state.tempdeposit)}
                                     />
 
                                 </Grid.Column>
@@ -219,13 +219,13 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
                                             let e = {
                                                 target: {
                                                     name: 'deposit',
-                                                    value: this.state.tempdeposit,
-                                                    min: total * 0.1,
-                                                    max: total * 0.5
+                                                    value: this.state.tempdeposit/total*1000,
+                                                    min: 100,
+                                                    max: 800
                                                 }
                                             };
                                             this.props.handleChange(e).then(
-                                                () => this.setState({ tempdeposit: this.props.deposit })
+                                                () => this.setState({ tempdeposit: (total/1000 * this.props.deposit).toFixed(2) })
                                             );
 
                                         }
@@ -241,8 +241,8 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
 
                         Total: £{total} <br />
                         Period: {this.state.period} months <br />
-                        Deposit: £{((this.props.deposit * 100) / 100).toFixed(2)} <br />
-                        Monthly: £{((total - this.props.deposit) / this.state.period).toFixed(2)}
+                        Deposit: £{(this.props.deposit/1000 * total).toFixed(2)} <br />
+                        Monthly: £{((total - (this.props.deposit/1000 * total)) / this.state.period).toFixed(2)}
                     </Fragment>
                 }
 
