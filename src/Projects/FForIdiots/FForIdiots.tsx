@@ -1,8 +1,5 @@
 import { Component, Fragment } from "react";
-import { Breadcrumb, Button, Card, Container, Divider, Grid, Header, Icon, Image, Input, Label, Loader, Message, Segment } from "semantic-ui-react";
-
-import devices from './devices.json';
-import care from './samsungcareplus.json';
+import { Breadcrumb, Button, Card, Container, Divider, Grid, Header, Icon, Image, Input, Label, Loader, Message, Placeholder, Segment } from "semantic-ui-react";
 
 import './FForIdiots.css';
 import { Link, useParams } from "react-router-dom";
@@ -19,6 +16,10 @@ interface BasketTyping extends Array<BasketItem> { }
 
 interface PackageState {
     basket: BasketTyping,
+    devices: any,
+    care: any,
+    loading: boolean,
+    [name: string]: any
 }
 
 class PackageBuilder extends Component<any, PackageState> {
@@ -26,11 +27,16 @@ class PackageBuilder extends Component<any, PackageState> {
         super(props);
 
         this.state = {
-            basket: []
+            basket: [],
+            devices: {},
+            care: {},
+            loading: true
         }
 
         this.updateBasket = this.updateBasket.bind(this);
         this.printBasket = this.printBasket.bind(this);
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     updateBasket(newItem: any) {
@@ -47,11 +53,29 @@ class PackageBuilder extends Component<any, PackageState> {
         return (basket);
     }
 
+    componentDidMount(): void {
+        fetch('https://scissaria.com/vigilant-guacamole/devices.json')
+            .then(response => response.json())
+            .then(data => this.setState({ devices: data }))
+            .then(
+                () => fetch('https://scissaria.com/vigilant-guacamole/samsungcareplus.json')
+                    .then(response => response.json())
+                    .then(data => this.setState({ care: data }))
+            ).then(() => this.setState({ loading: false }))
+    }
+
+    handleChange = (event: any) => {
+        let { name, value, min, max } = event.target;
+        value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+
+        return new Promise((resolve: any) => this.setState({ [name]: value }, resolve));
+    };
+
     render() {
         return (
             <Container>
                 {this.props.params.device ?
-                    <FForIdiots
+                    this.state.loading ? <Placeholder /> : <FForIdiots
                         params={this.props.params}
                         basket={this.state.basket}
                         updateBasket={this.updateBasket}
@@ -105,7 +129,8 @@ class BundleDisplay extends Component<any, any> {
     }
 }
 
-class FinanceDisplay extends Component<{ total: number }, any> {
+
+class FinanceDisplay extends Component<{ total: number, handleChange: any, deposit: number }, any> {
 
     constructor(props: any) {
         super(props);
@@ -114,7 +139,6 @@ class FinanceDisplay extends Component<{ total: number }, any> {
             collapsed: true,
 
             period: 12,
-            deposit: 0,
             tempdeposit: 0
         }
     }
@@ -125,14 +149,14 @@ class FinanceDisplay extends Component<{ total: number }, any> {
 
         return new Promise((resolve: any) => this.setState({ [name]: value }, resolve));
     };
-    
+
     render() {
 
         let total = this.props.total;
 
         return (
             <Segment>
-                <Header onClick={() => this.setState({ collapsed: !this.state.collapsed, deposit: this.props.total * 0.1, tempdeposit: this.props.total * 0.1 })}>Finance <Icon style={{ float: 'right' }} name={this.state.collapsed ? 'chevron down' : 'chevron up'} ></Icon></Header>
+                <Header onClick={() => { this.setState({ collapsed: !this.state.collapsed, tempdeposit: this.props.total * 0.1 }); this.props.handleChange({ target: { name: 'deposit', value: total * 0.1, min: total * 0.1, max: total * 0.5 } }) }}>Finance <Icon style={{ float: 'right' }} name={this.state.collapsed ? 'chevron down' : 'chevron up'} ></Icon></Header>
                 {this.state.collapsed ? '' :
                     <Fragment>
                         <Grid style={{ width: '100%' }}>
@@ -165,10 +189,10 @@ class FinanceDisplay extends Component<{ total: number }, any> {
                                         min={total * 0.1}
                                         max={total * 0.5}
                                         name='deposit'
-                                        onChange={(e) => { this.handleChange(e); this.setState({ tempdeposit: e.target.value }) }}
+                                        onChange={(e) => { this.props.handleChange(e); this.setState({ tempdeposit: e.target.value }) }}
                                         step={total / 100}
                                         type='range'
-                                        value={this.state.deposit}
+                                        value={this.props.deposit}
                                     >
                                         <input className="slider" />
                                     </Input>
@@ -195,8 +219,8 @@ class FinanceDisplay extends Component<{ total: number }, any> {
                                                     max: total * 0.5
                                                 }
                                             };
-                                            this.handleChange(e).then(
-                                                () => this.setState({ tempdeposit: this.state.deposit })
+                                            this.props.handleChange(e).then(
+                                                () => this.setState({ tempdeposit: this.props.deposit })
                                             );
 
                                         }
@@ -212,8 +236,8 @@ class FinanceDisplay extends Component<{ total: number }, any> {
 
                         Total: £{total} <br />
                         Period: {this.state.period} months <br />
-                        Depost: £{((this.state.deposit * 100) / 100).toFixed(2)} <br />
-                        Monthly: £{((total - this.state.deposit) / this.state.period).toFixed(2)}
+                        Deposit: £{((this.props.deposit * 100) / 100).toFixed(2)} <br />
+                        Monthly: £{((total - this.props.deposit) / this.state.period).toFixed(2)}
                     </Fragment>
                 }
 
@@ -245,7 +269,7 @@ class DeviceList extends Component<any, any> {
             <Container>
                 <br />
                 <Grid >
-                    {this.getList(devices)}
+                    {this.getList(this.props.devices)}
                 </Grid>
             </Container>
         )
@@ -268,6 +292,7 @@ class FForIdiots extends Component<any, any> {
             tradeinVal: 0,
             rrp: 0,
             price: 0,
+            careCost: 0,
 
             basket: {},
 
@@ -279,11 +304,13 @@ class FForIdiots extends Component<any, any> {
             period: 12,
             tempdeposit: 0
         };
+
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
     }
 
     getDevice(devCode: any) {
 
-        let device: any = devices[devCode as keyof typeof devices]
+        let device: any = this.props.devices[devCode as keyof typeof this.props.devices]
 
         let newState: any = {};
         newState.device = devCode;
@@ -294,7 +321,7 @@ class FForIdiots extends Component<any, any> {
     }
 
     getSizes() {
-        let device: any = devices[this.state.device as keyof typeof devices];
+        let device: any = this.props.devices[this.state.device as keyof typeof this.props.devices];
 
         let buttons = device.sizes.map((size: any) =>
             <Grid.Column style={{ textAlign: 'center' }}>
@@ -315,7 +342,7 @@ class FForIdiots extends Component<any, any> {
     }
 
     getColours() {
-        let device: any = devices[this.state.device as keyof typeof devices];
+        let device: any = this.props.devices[this.state.device as keyof typeof this.props.devices];
 
         let colours = device.colours.map((colour: any) =>
             <Grid.Column
@@ -337,21 +364,21 @@ class FForIdiots extends Component<any, any> {
     }
 
     getCare() {
-        let scpGroup: any = devices[this.state.device as keyof typeof devices].scpGroup
-        let options: any = care[scpGroup as keyof typeof care].map(
-            (care) => <Grid.Column>
+        let scpGroup: any = this.props.devices[this.state.device as keyof typeof this.props.devices].scpGroup
+        let options: any = this.props.care[scpGroup as keyof typeof this.props.care].map(
+            (care: any) => <Grid.Column>
                 <Button
                     onClick={() => {
                         let basket = this.state.basket;
                         basket.care = { name: care.name, amount: care.price };
-                        this.setState({ basket: basket })
+                        this.setState({ basket: basket, careCost: care.price })
                     }}
                 >{care.name}</Button>
             </Grid.Column>
         )
 
         let careButtons = <Grid columns={options.length}>
-            <Grid.Row><Grid.Column width={16}><Button style={{ width: '100%', textAlign: 'center' }} onClick={() => { let basket = this.state.basket; basket.care = null; this.setState({ basket: basket }) }}>None</Button></Grid.Column></Grid.Row>
+            <Grid.Row><Grid.Column width={16}><Button style={{ width: '100%', textAlign: 'center' }} onClick={() => { let basket = this.state.basket; basket.care = null; this.setState({ basket: basket }); this.setState({ care: 0 }) }}>None</Button></Grid.Column></Grid.Row>
             {options}
         </Grid>;
 
@@ -361,7 +388,7 @@ class FForIdiots extends Component<any, any> {
 
 
     updateDevice(devCode: string) {
-        let device: any = devices[devCode as keyof typeof devices];
+        let device: any = this.props.devices[devCode as keyof typeof this.props.devices];
 
         this.setState({
             device: devCode,
@@ -371,8 +398,8 @@ class FForIdiots extends Component<any, any> {
             tradeinVal: device.tradein
         });
 
-        this.updateSize(devices[devCode as keyof typeof devices].sizes[0]);
-        this.updateColour(devices[devCode as keyof typeof devices].colours[0]);
+        this.updateSize(this.props.devices[devCode as keyof typeof this.props.devices].sizes[0]);
+        this.updateColour(this.props.devices[devCode as keyof typeof this.props.devices].colours[0]);
 
     }
 
@@ -415,6 +442,12 @@ class FForIdiots extends Component<any, any> {
         if (this.props.params.device !== prevProps.params.device) {
             this.updateDevice(this.props.params.device);
         }
+
+        // if (!this.props.loading) {
+        //     if (this.state.careCost + this.state.price - this.state.tradeinVal !== prevProps.state.careCost + prevProps.state.price - prevProps.state.tradeinVal) {
+        //         this.setState({ deposit: (this.state.careCost + this.state.price - this.state.tradeinVal) * 0.1 })
+        //     }
+        // }
     }
 
     render() {
@@ -422,6 +455,8 @@ class FForIdiots extends Component<any, any> {
         let total = this.state.price;
 
         total = this.state.tradein ? total - this.state.tradeinVal : total;
+
+        total = total + this.state.careCost;
 
 
         return (
@@ -450,18 +485,18 @@ class FForIdiots extends Component<any, any> {
                     </Card.Content>
 
                     <Card.Content>
-                        {this.getColours()}
+                        {this.props.loading ? <Placeholder /> : this.getColours()}
                     </Card.Content>
 
                     <Card.Content >
-                        {this.getSizes()}
+                        {this.props.loading ? <Placeholder /> : this.getSizes()}
                     </Card.Content>
                 </Card>
 
                 <Segment>
                     <Header>Care</Header>
 
-                    {this.getCare()}
+                    {this.props.loading ? <Placeholder /> : this.getCare()}
                 </Segment>
                 {
                     this.state.tradeinVal != 0 ?
@@ -481,7 +516,7 @@ class FForIdiots extends Component<any, any> {
                 </Message>
 
 
-                <FinanceDisplay total={total} />
+                <FinanceDisplay total={total} handleChange={this.props.handleChange} deposit={this.props.deposit} />
                 <br />
             </Container >
         );
