@@ -85,7 +85,7 @@ class PackageBuilder extends Component<any, PackageState> {
                         handleChange={this.handleChange}
                         updateBasket={this.updateBasket}
                         printBasket={this.printBasket}
-                    /> : <Fragment> <DeviceList state={this.state} devices={this.state.devices} /> <Divider /> <BundleDisplay /> </Fragment>
+                    /> : <Fragment> <DeviceList state={this.state} devices={this.state.devices} /> <Divider /> <BundleDisplay devices={this.state.devices} /> <br /> </Fragment>
                 }
             </Container>
         );
@@ -115,7 +115,17 @@ class BundleDisplay extends Component<any, any> {
 
     displayBundles(){
         let bundleDisplay = this.state.bundles.map((bundle: any) => <Card>
-            <Card.Content>{bundle.name}</Card.Content>
+            {
+                bundle.basket.filter((item: any) => item.item != "VA" && item.item != "tabs9").map((item: any) =>    
+                <Image src={this.props.devices[item.item] ? this.props.devices[item.item].colours[0].img : ""} />
+                )
+            }
+            <Card.Content>
+                <Header>{bundle.name}</Header>
+                <Card.Meta>{bundle.accredit}'s bundle</Card.Meta>
+            </Card.Content>
+
+            
         </Card>);
 
         return bundleDisplay;
@@ -390,6 +400,12 @@ class FForIdiots extends Component<any, any> {
         return careButtons;
     }
 
+    getOffers() {
+        let device:any = this.props.devices[this.state.device as keyof typeof this.props.devices];
+        console.log(device.offers)
+        return device.offers == undefined ? <br/> : device.offers.map((offer: any) => <Segment style={{textAlign: "center"}}>{offer.display}</Segment>)
+    }
+
 
 
     updateDevice(devCode: string) {
@@ -505,14 +521,16 @@ class FForIdiots extends Component<any, any> {
                 </Segment>
                 {
                     this.state.tradeinVal != 0 ?
-                        <Button as={Segment} style={{ textAlign: 'center', width: '100%' }} color={this.state.tradein ? 'green' : 'grey'} value={this.state.tradein} onClick={(e: any, d: any) => this.setState({ tradein: !d.value })}>
+                        <Button as={Segment} style={{ textAlign: 'center', width: '100%' }}  color={this.state.tradein ? 'green' : 'grey'} value={this.state.tradein} onClick={(e: any, d: any) => this.setState({ tradein: !d.value })}>
                             Trade in <Icon name={this.state.tradein ? 'check' : 'x'} />
                         </Button> : ''
                 }
 
-                <Button as={Segment} style={{ textAlign: 'center', width: '100%' }} color='green' onClick={() => { this.props.updateBasket(this.state.basket.device); this.state.basket.care ? this.props.updateBasket(this.state.basket.care) : console.log('xd') }}>
+                {this.props.loading ? <Placeholder /> : this.getOffers()}
+
+                {/* <Button as={Segment} style={{ textAlign: 'center', width: '100%' }} color='green' onClick={() => { this.props.updateBasket(this.state.basket.device); this.state.basket.care ? this.props.updateBasket(this.state.basket.care) : console.log('xd') }}>
                     Add to basket <Icon name='add' />
-                </Button>
+                </Button> */}
 
                 <Divider />
 
