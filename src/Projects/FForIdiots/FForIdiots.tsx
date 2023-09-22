@@ -93,7 +93,7 @@ class PackageBuilder extends Component<any, PackageState> {
 }
 
 class BundleDisplay extends Component<any, any> {
-    constructor(props: any){
+    constructor(props: any) {
         super(props);
 
         this.state = {
@@ -103,21 +103,21 @@ class BundleDisplay extends Component<any, any> {
     }
 
 
-    fetchBundles(){
+    fetchBundles() {
         let bundleURL = "https://scissaria.com/vigilant-guacamole/bundles.json"
 
         fetch(bundleURL).then(
             (response) => response.json().then(
-                (bundles: any) => this.setState({bundles: bundles.bundles, loading: false})
+                (bundles: any) => this.setState({ bundles: bundles.bundles, loading: false })
             )
         )
     }
 
-    displayBundles(){
+    displayBundles() {
         let bundleDisplay = this.state.bundles.map((bundle: any) => <Card>
             {
-                bundle.basket.filter((item: any) => item.item != "VA" && item.item != "tabs9").map((item: any) =>    
-                <Image src={this.props.devices[item.item] ? this.props.devices[item.item].colours[0].img : ""} />
+                bundle.basket.filter((item: any) => item.item != "VA" && item.item != "tabs9").map((item: any) =>
+                    <Image src={this.props.devices[item.item] ? this.props.devices[item.item].colours[0].img : ""} />
                 )
             }
             <Card.Content>
@@ -125,21 +125,21 @@ class BundleDisplay extends Component<any, any> {
                 <Card.Meta>{bundle.accredit}'s bundle</Card.Meta>
             </Card.Content>
 
-            
+
         </Card>);
 
         return bundleDisplay;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchBundles()
     }
 
-    render(){
-        return(<Fragment>
-                {
-                    this.state.loading ? <Loader /> : this.displayBundles()
-                }
+    render() {
+        return (<Fragment>
+            {
+                this.state.loading ? <Loader /> : this.displayBundles()
+            }
         </Fragment>)
     }
 }
@@ -174,7 +174,7 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
                 <Header onClick={() => { this.setState({ collapsed: !this.state.collapsed, tempdeposit: this.props.total * 0.1 }) }}>Finance <Icon style={{ float: 'right' }} name={this.state.collapsed ? 'chevron down' : 'chevron up'} ></Icon></Header>
                 {this.state.collapsed ? '' :
                     <Fragment>
-                        <Grid style={{ width: '100%' }}>
+                        <Grid style={{ width: '100%', margin: '0' }}>
                             <Grid.Row>
                                 <Grid.Column width={4}>
                                     <Label style={{ width: '100%', textAlign: 'right' }}>Period:</Label>
@@ -204,7 +204,7 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
                                         min={100}
                                         max={800}
                                         name='deposit'
-                                        onChange={(e) => { this.props.handleChange(e);  }}
+                                        onChange={(e) => { this.props.handleChange(e); }}
                                         step={1}
                                         type='range'
                                         value={this.props.deposit}
@@ -229,13 +229,13 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
                                             let e = {
                                                 target: {
                                                     name: 'deposit',
-                                                    value: this.state.tempdeposit/total*1000,
+                                                    value: this.state.tempdeposit / total * 1000,
                                                     min: 100,
                                                     max: 800
                                                 }
                                             };
                                             this.props.handleChange(e).then(
-                                                () => this.setState({ tempdeposit: (total/1000 * this.props.deposit).toFixed(2) })
+                                                () => this.setState({ tempdeposit: (total / 1000 * this.props.deposit).toFixed(2) })
                                             );
 
                                         }
@@ -245,14 +245,24 @@ class FinanceDisplay extends Component<{ total: number, handleChange: any, depos
                                     />
                                 </Grid.Column>
                             </Grid.Row>
+
+                            <br />
+
+                            <Grid.Row style={{ paddingRight: 0}}>
+                                <Grid.Column width={4} style={{padding: '7'}}>
+                                    <Label style={{ textAlign: 'center', width: '100%', height: '100%' }}>Total <br /> £{total}</Label>
+                                </Grid.Column>
+                                <Grid.Column width={4} style={{padding: '7'}}>
+                                    <Label style={{ textAlign: 'center', width: '100%', height: '100%' }}>Period <br /> {this.state.period} months </Label>
+                                </Grid.Column>
+                                <Grid.Column width={4} style={{padding: '7'}}>
+                                    <Label style={{ textAlign: 'center', width: '100%', height: '100%' }}>Deposit <br /> £{(this.props.deposit / 1000 * total).toFixed(2)} </Label>
+                                </Grid.Column>
+                                <Grid.Column width={4} style={{padding: '7'}}>
+                                    <Label style={{ textAlign: 'center', width: '100%', height: '100%' }}>Monthly <br /> £{((total - (this.props.deposit / 1000 * total)) / this.state.period).toFixed(2)} </Label>
+                                </Grid.Column>
+                            </Grid.Row>
                         </Grid>
-                        <br />
-
-
-                        Total: £{total} <br />
-                        Period: {this.state.period} months <br />
-                        Deposit: £{(this.props.deposit/1000 * total).toFixed(2)} <br />
-                        Monthly: £{((total - (this.props.deposit/1000 * total)) / this.state.period).toFixed(2)}
                     </Fragment>
                 }
 
@@ -401,9 +411,9 @@ class FForIdiots extends Component<any, any> {
     }
 
     getOffers() {
-        let device:any = this.props.devices[this.state.device as keyof typeof this.props.devices];
+        let device: any = this.props.devices[this.state.device as keyof typeof this.props.devices];
         console.log(device.offers)
-        return device.offers == undefined ? <br/> : device.offers.map((offer: any) => <Segment style={{textAlign: "center"}}>{offer.display}</Segment>)
+        return device.offers == undefined ? <br /> : device.offers.map((offer: any) => <Segment style={{ textAlign: "center" }}>{offer.display}</Segment>)
     }
 
 
@@ -521,7 +531,7 @@ class FForIdiots extends Component<any, any> {
                 </Segment>
                 {
                     this.state.tradeinVal != 0 ?
-                        <Button as={Segment} style={{ textAlign: 'center', width: '100%' }}  color={this.state.tradein ? 'green' : 'grey'} value={this.state.tradein} onClick={(e: any, d: any) => this.setState({ tradein: !d.value })}>
+                        <Button as={Segment} style={{ textAlign: 'center', width: '100%' }} color={this.state.tradein ? 'green' : 'grey'} value={this.state.tradein} onClick={(e: any, d: any) => this.setState({ tradein: !d.value })}>
                             Trade in <Icon name={this.state.tradein ? 'check' : 'x'} />
                         </Button> : ''
                 }
